@@ -10,7 +10,7 @@ In this work, we consider enforcing convexity in the strong sense, by defining c
 
 Here, we aim to construct a convex neural network model without affecting expressiveness (that is, without constraining weights \textit{a priori}) and training cost (which can be affected by transformations performed on weights at the training stage). Building upon recent works on monotonic neural networks \cite{wehenkel2019unconstrained} and monotone transport maps for density estimation \cite{baptista2020adaptive}, our approach relies on simple integral representations to define an operator that transforms any arbitrary function (and in particular, a \textit{free} neural network) into a convex function. This strategy thus entails the rectification of the whole neural network model. We show, through various numerical experiments on both digitally synthesized and experimental datasets, that the proposed rectified models enable proper fitting. They are also seen to converge much faster than constrained models (in terms of number of iterations)---at the expense of an increased computational cost per iteration. 
 
-The rest of this section is organized as follows. The mechanistic parameterization and rectification strategy are first presented in Section \ref{sec:rectifiers} (together with a toy example). Applications to standard hyperelastic models relevant to both isotropic and anisotropic materials are then discussed in Section \ref{sec:applications}. Conclusions and avenues for future research are finally given in Section \ref{sec:conclusion}. 
+The rest of this section is organized as follows. The mechanistic parameterization and rectification strategy are first presented in Section~\ref{sec:rectifiers} (together with a toy example). Applications to standard hyperelastic models relevant to both isotropic and anisotropic materials are then discussed in Section \ref{sec:applications}.
 
 \section{Rectified Neural Network Representations}
 \label{sec:rectifiers}
@@ -178,20 +178,21 @@ Three different choices for $g$ were considered, namely the square function $g(x
 
 In this example, a simple neural network architecture with one hidden layer and two neurons is used (without activation functions). The learning rate for the ADAM optimizer is set to 0.01. Mean square validation errors for the rectified functions are reported in Tab.~\ref{tab:toy-problem-validation-errors} for the three choices of $g$. 
 \begin{table}[ht!]
-\centering
-\begin{tabular}{|c|c|} 
- \hline
- Function $g$ & Error $\epsilon$ \\ 
- \hline
- Square & $1.5850 \times 10^{-7}$ \\ 
- \hline
- Exponential & $2.0018 \times 10^{-5}$ \\ 
- \hline
- Soft-plus & $1.6069 \times 10^{-7}$ \\ 
- \hline
- \end{tabular} 
-\caption{Results for the validation step: $L^2$-norm errors for the rectified neural network model (toy problem).}
+\caption[Results for the validation step (toy problem).]{Results for the validation step: $L^2$-norm errors for the rectified neural network model (toy problem).}
 \label{tab:toy-problem-validation-errors}
+\begin{center}
+    \begin{tabular}{|c|c|} 
+        \hline
+        Function $g$ & Error $\epsilon$ \\ 
+        \hline
+        Square & $1.5850 \times 10^{-7}$ \\ 
+        \hline
+        Exponential & $2.0018 \times 10^{-5}$ \\ 
+        \hline
+        Soft-plus & $1.6069 \times 10^{-7}$ \\ 
+        \hline
+        \end{tabular}
+\end{center}
 \end{table}
 The square and modified soft-plus functions provide fairly similar validation errors, smaller than the one obtained with the exponential function. In addition, the model rectified with the square function converged in 3,000 epochs, while the rectified model with the modified soft-plus function converged in about 8,000 epochs. The model with the exponential function converged in more than 10,000 epochs, which is slower than with the other two positive functions. In order to qualitatively assess the accuracy, the predictions obtained with the rectified neural network for the validation dataset are shown in Fig.~\ref{fig:toy-problem-qualitative-results} (see Tab.~\ref{tab:toy-problem-validation-errors} for validation metrics).
 \begin{figure}[ht!]
@@ -243,7 +244,7 @@ Two hundreds datapoints are generated using Eq.~\eqref{eq:MR_Cauchy}, with 20 \%
     \begin{center}
         \includegraphics[width = 0.5\textwidth]{Pictures/Mr_Err.png}
     \end{center}
-    \caption{Loss function $\mathcal{L}_d$ for different neural network architectures on the validation dataset (Mooney-Rivlin material).}
+    \caption[Loss $\mathcal{L}_d$ for different neural network architectures.]{Loss $\mathcal{L}_d$ for different neural network architectures on the validation dataset (Mooney-Rivlin material).}
     \label{fig:Mr_Err_Study} 
 \end{figure}
 Results predicted by the calibrated rectified neural network model (with 5 layers and 40 neurons per layer) on the validation dataset is shown in Fig.~\ref{fig:MR best result 1}.
@@ -251,11 +252,11 @@ Results predicted by the calibrated rectified neural network model (with 5 layer
     \begin{center}
 \includegraphics[width=0.5\textwidth]{Pictures/sigma_MR.png}
     \end{center}
-    \caption{Reference stress response $\lambda \mapsto \Sigma(\lambda)$ (black dashed line), reference values (blue star), and rectified neural network predictions (red circle) for the validation dataset (random selection). Here, 5 hidden layers and 40 neurons per layer are used.}
+    \caption[Reference stress response and values, rectified NN predictions.]{Reference stress response $\lambda \mapsto \Sigma(\lambda)$ (black dashed line), reference values (blue star), and rectified neural network predictions (red circle) for the validation dataset (random selection). Here, 5 hidden layers and 40 neurons per layer are used.}
     \label{fig:MR best result 1}
 \end{figure}
 
-\begin{remark} As indicated in Section \ref{sec:intro}, Input-Convex Neural Networks (ICNNs) can be obtained by forcing all weights, except those connected to the input, to be non-negative, and by using only convex non-decreasing activation functions \cite{amos2017input, as2022mechanics,Asad-IJNME,KLEIN2022104703}. In order to evaluate the performance of such constrained neural networks in terms of training results, we consider a model of the form 
+\begin{remark} As indicated before, Input-Convex Neural Networks (ICNNs) can be obtained by forcing all weights, except those connected to the input, to be non-negative, and by using only convex non-decreasing activation functions \cite{amos2017input, as2022mechanics,Asad-IJNME,KLEIN2022104703}. In order to evaluate the performance of such constrained neural networks in terms of training results, we consider a model of the form 
 \begin{align}
     \psi_{\mathrm{ICNN}}(I_1, I_2) &= \psi_{\mathrm{ICNN}}^{(1)}(I_1) + \psi_{\mathrm{ICNN}}^{(2)}(I_2)\,,
 \end{align}
@@ -347,7 +348,7 @@ In the numerical example below, the material parameters correspond to the values
     \begin{center}
     \includegraphics[width=0.5\textwidth]{Pictures/ANI_ERR.png}
     \end{center}
-    \caption[Parametric study for different NN architectures.]{Parametric study of the mean squared error for different NN architectures on the validation dataset (Anisotropic material).}
+    \caption[Parametric study for RNN architectures.]{Parametric study of the mean squared error for different NN architectures on the validation dataset (Anisotropic material).}
     \label{fig:ani_err}
 \end{figure}
 Results predicted with the fitted rectified neural network model on the validation dataset are shown in Figs.~\ref{fig:ANI best result 1}.
@@ -355,7 +356,7 @@ Results predicted with the fitted rectified neural network model on the validati
     \begin{center}
         \includegraphics[width=0.5\textwidth]{Pictures/sigma_ANI.png}
     \end{center}
-    \caption[Reference stress response $\lambda \mapsto \Sigma(\lambda)$, reference values, and rectified neural network predictions.]{Reference stress response $\lambda \mapsto \Sigma(\lambda)$ (black dashed line), reference values (blue star), and rectified neural network predictions (red circle) for the validation dataset (random selection). Here, the NN involves 4 hidden layers and 40 neurons per layer.}
+    \caption[Reference stress response and values, rectified NN predictions.]{Reference stress response $\lambda \mapsto \Sigma(\lambda)$ (black dashed line), reference values (blue star), and rectified neural network predictions (red circle) for the validation dataset (random selection). Here, the NN involves 4 hidden layers and 40 neurons per layer.}
     \label{fig:ANI best result 1}
 \end{figure}
 The validation metric in this example is $3.46 \times 10^{-6}$.
@@ -393,14 +394,14 @@ Predictions obtained with the rectified neural network can be qualitatively comp
     \begin{center}
         \includegraphics[width=0.5\textwidth]{Pictures/circ.png}
     \end{center}
-    \caption[Reference stress response $\lambda \mapsto \Sigma(\lambda)$, reference values, and rectified neural network predictions in the circumferential direction.]{Reference stress response $\lambda \mapsto \Sigma(\lambda)$ (black dashed line), reference values (blue star), and rectified neural network predictions (red circle) for the validation dataset in the circumferential direction (six experimental responses are considered for illustration purposes).}
+    \caption[Reference stress response and values, RNN predictions (circumferential).]{Reference stress response $\lambda \mapsto \Sigma(\lambda)$ (black dashed line), reference values (blue star), and rectified neural network predictions (red circle) for the validation dataset in the circumferential direction (six experimental responses are considered for illustration purposes).}
     \label{fig:exp_circ}
 \end{figure}
 \begin{figure}[ht!]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{Pictures/axial.png}
     \end{center}
-    \caption[Reference stress response $\lambda \mapsto \Sigma(\lambda)$, reference values, and rectified neural network predictions in the axial direction.]{Reference stress response $\lambda \mapsto \Sigma(\lambda)$ (black dashed line), reference values (blue star), and rectified neural network predictions (red circle) for the validation dataset in the axial direction (six experimental responses are considered for illustration purposes).}
+    \caption[Reference stress response and reference values, RNN predictions (axial).]{Reference stress response $\lambda \mapsto \Sigma(\lambda)$ (black dashed line), reference values (blue star), and rectified neural network predictions (red circle) for the validation dataset in the axial direction (six experimental responses are considered for illustration purposes).}
     \label{fig:exp_axial}
 \end{figure}
 With a maximal validation error equal to $1.0096\times10^{-4}$ (obtained for sample \#XI, intima layer), it is seen that the rectified neural network can reproduce the experimental data very well, for all different layers in the two directions.

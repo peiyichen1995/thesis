@@ -16,6 +16,7 @@
 \usepackage{titlesec}
 \usepackage{amsmath, amssymb, amsfonts, amsthm, stmaryrd}
 \usepackage[scr=rsfs]{mathalpha}
+\usepackage{upgreek}
 \usepackage{bm}
 \usepackage{graphicx}
 \usepackage[backend=biber,natbib,style=apa,]{biblatex}
@@ -49,6 +50,8 @@
 \usepackage{makecell}
 \usepackage[super]{nth}
 \usepackage{xr}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
 \setlist[itemize]{noitemsep,nolistsep}
 \setlist[enumerate]{noitemsep,nolistsep}
@@ -181,6 +184,119 @@
 \newcommand\bfX{\boldsymbol{X}}
 \newcommand\bfY{\boldsymbol{Y}}
 \newcommand\bfZ{\boldsymbol{Z}}
+
+\newcommand{\diff}[1]{\text{ d}#1}
+
+\newcommand{\bta}{\textbf{a}}
+\newcommand{\btb}{\textbf{b}}
+\newcommand{\btc}{\textbf{c}}
+\newcommand{\btd}{\textbf{d}}
+\newcommand{\bte}{\textbf{e}}
+\newcommand{\btf}{\textbf{f}}
+\newcommand{\btg}{\textbf{g}}
+\newcommand{\bth}{\textbf{h}}
+\newcommand{\bti}{\textbf{i}}
+\newcommand{\btj}{\textbf{j}}
+\newcommand{\btk}{\textbf{k}}
+\newcommand{\btl}{\textbf{l}}
+\newcommand{\btm}{\textbf{m}}
+\newcommand{\btn}{\textbf{n}}
+\newcommand{\bto}{\textbf{o}}
+\newcommand{\btp}{\textbf{p}}
+\newcommand{\btq}{\textbf{q}}
+\newcommand{\btr}{\textbf{r}}
+\newcommand{\bts}{\textbf{s}}
+\newcommand{\btt}{\textbf{t}}
+\newcommand{\btu}{\textbf{u}}
+\newcommand{\btv}{\textbf{v}}
+\newcommand{\btw}{\textbf{w}}
+\newcommand{\btx}{\textbf{x}}
+\newcommand{\bty}{\textbf{y}}
+\newcommand{\btz}{\textbf{z}}
+
+\newcommand{\btA}{\textbf{A}}
+\newcommand{\btB}{\textbf{B}}
+\newcommand{\btC}{\textbf{C}}
+\newcommand{\btD}{\textbf{D}}
+\newcommand{\btE}{\textbf{E}}
+\newcommand{\btF}{\textbf{F}}
+\newcommand{\btG}{\textbf{G}}
+\newcommand{\btH}{\textbf{H}}
+\newcommand{\btI}{\textbf{I}}
+\newcommand{\btJ}{\textbf{J}}
+\newcommand{\btK}{\textbf{K}}
+\newcommand{\btL}{\textbf{L}}
+\newcommand{\btM}{\textbf{M}}
+\newcommand{\btN}{\textbf{N}}
+\newcommand{\btO}{\textbf{O}}
+\newcommand{\btP}{\textbf{P}}
+\newcommand{\btQ}{\textbf{Q}}
+\newcommand{\btR}{\textbf{R}}
+\newcommand{\btS}{\textbf{S}}
+\newcommand{\btT}{\textbf{T}}
+\newcommand{\btU}{\textbf{U}}
+\newcommand{\btV}{\textbf{V}}
+\newcommand{\btW}{\textbf{W}}
+\newcommand{\btX}{\textbf{X}}
+\newcommand{\btY}{\textbf{Y}}
+\newcommand{\btZ}{\textbf{Z}}
+
+\newcommand{\rta}{\text{a}}
+\newcommand{\rtb}{\text{b}}
+\newcommand{\rtc}{\text{c}}
+\newcommand{\rtd}{\text{d}}
+\newcommand{\rte}{\text{e}}
+\newcommand{\rtf}{\text{f}}
+\newcommand{\rtg}{\text{g}}
+\newcommand{\rth}{\text{h}}
+\newcommand{\rti}{\text{i}}
+\newcommand{\rtj}{\text{j}}
+\newcommand{\rtk}{\text{k}}
+\newcommand{\rtl}{\text{l}}
+\newcommand{\rtm}{\text{m}}
+\newcommand{\rtn}{\text{n}}
+\newcommand{\rto}{\text{o}}
+\newcommand{\rtp}{\text{p}}
+\newcommand{\rtq}{\text{q}}
+\newcommand{\rtr}{\text{r}}
+\newcommand{\rts}{\text{s}}
+\newcommand{\rtt}{\text{t}}
+\newcommand{\rtu}{\text{u}}
+\newcommand{\rtv}{\text{v}}
+\newcommand{\rtw}{\text{w}}
+\newcommand{\rtx}{\text{x}}
+\newcommand{\rty}{\text{y}}
+\newcommand{\rtz}{\text{z}}
+
+\newcommand{\rtA}{\text{A}}
+\newcommand{\rtB}{\text{B}}
+\newcommand{\rtC}{\text{C}}
+\newcommand{\rtD}{\text{D}}
+\newcommand{\rtE}{\text{E}}
+\newcommand{\rtF}{\text{F}}
+\newcommand{\rtG}{\text{G}}
+\newcommand{\rtH}{\text{H}}
+\newcommand{\rtI}{\text{I}}
+\newcommand{\rtJ}{\text{J}}
+\newcommand{\rtK}{\text{K}}
+\newcommand{\rtL}{\text{L}}
+\newcommand{\rtM}{\text{M}}
+\newcommand{\rtN}{\text{N}}
+\newcommand{\rtO}{\text{O}}
+\newcommand{\rtP}{\text{P}}
+\newcommand{\rtQ}{\text{Q}}
+\newcommand{\rtR}{\text{R}}
+\newcommand{\rtS}{\text{S}}
+\newcommand{\rtT}{\text{T}}
+\newcommand{\rtU}{\text{U}}
+\newcommand{\rtV}{\text{V}}
+\newcommand{\rtW}{\text{W}}
+\newcommand{\rtX}{\text{X}}
+\newcommand{\rtY}{\text{Y}}
+\newcommand{\rtZ}{\text{Z}}
+
+\DeclareMathOperator*{\argmin}{argmin}
+
 %
 \newcommand\bs[1]{\boldsymbol{#1}}
 
@@ -188,6 +304,18 @@
 \newcommand{\rcg}{\bfC}
 \newcommand{\grad}{\boldsymbol{\nabla}}
 \DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\cof}{cof}
+\newcommand{\divergence}{\grad \cdot}
+\newcommand{\mms}{\text{MMS}}
+\newcommand{\cov}{\text{Cov}}
+
+\newcommand{\inner}[3]{\langle#2, #3\rangle_{#1}}
+\DeclareMathOperator{\heaviside}{heaviside}
+\newcommand{\btphi}{\boldsymbol{\upphi}}
+\newcommand{\btPhi}{\boldsymbol{\Upphi}}
+
+\newcommand{\macaulay}[1]{{\left<#1\right>}}
+\newcommand{\norm}[1]{{\left\lVert#1\right\rVert}}
 % \newcommand\hmmax{0}
 % \newcommand\bmmax{0}
 %%
@@ -273,8 +401,9 @@
 \include{./Introduction/introduction.tex}
 \include{./Chapter2/artery} % A regular chapter, starts with '\chapter{Title}'
 \input{./Chapter3/polyconvex}
-\input{./Chapter4/chLorem}
-\input{./Chapter5/chLorem2}
+\input{./Chapter4/cnnae}
+\input{./Chapter5/fe2}
+\input{./Chapter6/conclusion}
 
 %==============================================================================
 
