@@ -1,9 +1,6 @@
 \chapter{Polyconvex Neural Networks for Hyperelastic Constitutive Models: A Rectification Approach}
 \label{chap:polyconvex}
 
-Constitutive models based on neural networks (NN) have received growing attention over the past few years, owing to their ability to represent nonlinear mappings in a high dimensional setting. There is a very substantial amount of papers published on this topic, for a wide variety of material behaviors; see, \textit{e.g.},  \cite{flaschel2021unsupervised,xu2021learning,holzapfel2021predictive,jung2006neural,ghaboussi1998autoprogressive,ghaboussi1998new,hashash2004numerical,furukawa1998implicit,joshi2022bayesian,as2022mechanics,Asad-IJNME,KLEIN2022104703} and the references therein, in a non-exhaustive manner.
-
-Beyond classical data science aspects that pertain to architecture design, training and validation strategies, and the analysis of approximation capabilities, a central concern is to make such surrogates amenable to scientific simulations where such models are typically set to parameterize systems of partial differential equations. In this context, the surrogate must satisfy both physical assumptions and mathematical properties (\textit{e.g.}, boundedness or a certain type of convexity) to ensure the existence (and potentially, the uniqueness) of solutions. 
 In the case of nonlinear elasticity for instance, a strain energy density function is theoretically required to satisfy frame indifference, some asymptotic behavior, and specific convexity and growth conditions. There are various ways to enforce such properties and in particular, the convexity requirement. The simplest strategy consists in using some unconstrained neural network that, if properly calibrated on a rich enough dataset, may possess desired convexity. Another way to enforce convexity is to add a penalty term in the loss function during the training stage; see, \textit{e.g.}, \cite{liu2020generic}. This latter strategy corresponds to a weak enforcement and hence does not prevent from checking the condition \textit{a posteriori}. 
 
 In this work, we consider enforcing convexity in the strong sense, by defining classes of surrogate models that satisfy the condition \textit{a priori}. The issue of ensuring the convexity of a neural network is not new and was mostly tackled by constraining the network through the use of non-negative weights and convex activation functions \cite{amos2017input}. Restriction on weights can be imposed by constraining the weights during training, or by using a mapping from $\mathbb{R}$ into $\mathbb{R}_{\geq 0}$ that acts on unconstrained weights \cite{sivaprasad2021curious,Asad-IJNME}. Applications in computational mechanics are presented in \cite{masi2021thermodynamics, as2022mechanics,Asad-IJNME} for example. A detailed analysis about the use of constrained neural networks for polyconvex anisotropic hyperelastic models can be found in \cite{KLEIN2022104703}, in particular.
@@ -118,28 +115,34 @@ Here, we enforce the constraint $f(0) = 0$ (that is, $x^\star = 0$), so that
 \begin{equation}
     f(x) = - \int_{-6}^{0} \phi(t)\,dt + \int_{-6}^x \phi(t)\,dt\,, \quad \forall x \geq -6\,. 
 \end{equation}
-The rectified function $f = \mathcal{R}\{\Phi\}$, together with the latent functions, are shown in Figs.~\ref{fig:sin example 1}, \ref{fig:sin example 2}, and \ref{fig:sin example 3}. 
+The rectified function $f = \mathcal{R}\{\Phi\}$, together with the latent functions, are shown in Figs.~\ref{fig:sin example 1}, \ref{fig:sin example 2}, and \ref{fig:sin example 3}.
 \begin{figure}[ht!]
     \begin{center}
-        \includegraphics[width=0.35\textwidth]{Pictures/sin.png}
-    \end{center}
-    \caption[Graph of $\Phi$.]{Graph of $\Phi$ (unconstrained function).}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{sin.png}
+            \end{center}
+                \caption[Graph of $\Phi$.]{Graph of $\Phi$ (unconstrained function).}
         \label{fig:sin example 1}
-\end{figure}
-\begin{figure}[ht!]
-    \begin{center}
-        \includegraphics[width=0.35\textwidth]{Pictures/increased_sin.png}
-    \end{center}
+          \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{increased_sin.png}
+            \end{center}
     \caption[Graph of $\phi = \mathcal{R}_{\mathrm{inc}}\{\Phi\}$.]{Graph of $\phi = \mathcal{R}_{\mathrm{inc}}\{\Phi\}$ (after first rectification).}
         \label{fig:sin example 2}
-\end{figure}
-\begin{figure}[ht!]
-    \begin{center}
-    \includegraphics[width=0.35\textwidth]{Pictures/rectified_sin.png}
-    \end{center}
+          \end{subfigure}
+    \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{rectified_sin.png}
+            \end{center}
     \caption[Graph of $f = \mathcal{R}_{\mathrm{cvx}}\{\phi\} = \mathcal{R}\{\Phi\}$.]{Graph of $f = \mathcal{R}_{\mathrm{cvx}}\{\phi\} = \mathcal{R}\{\Phi\}$ (fully rectified function).}
     \label{fig:sin example 3}
+          \end{subfigure}
+        
+    \end{center}
 \end{figure}
+
 Notice that in this example, the derivative of the rectified function $f$ cannot be required to vanish at an arbitrary point (as in Eq.~\eqref{eq:constraint-stationarity} for example), since the primary function $\Phi$ is fixed (as opposed to the case where it can be trained). 
 \end{remark}
 

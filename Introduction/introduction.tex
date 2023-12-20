@@ -1,2 +1,75 @@
 \chapter{Introduction}
 \label{chap:Introduction}
+
+The proper mathematical representation and identification of parametric uncertainties is a central task of uncertainty quantification (UQ). From a mechanics of materials standpoint \cite{GUILLEMINOT2020385}, such fluctuations can be primarily attributed to subscale variability, which itself---and most often---stems from complex processing conditions for engineered composites (such as fiber-reinforced composites or concrete), or evolution-based optimization in the case of biological tissues. There has been a tremendous amount of works focusing on the integration of such uncertainties in the past three decades. Labeled statistical distributions, such as Gaussian, Gamma, and lognormal distributions, are generally assumed to model homogeneous stochastic inputs. The choice of these distributions is sometimes arbitrarily made or based on data fitting (which may lead to ill-posed forward problems), and can facilitate uncertainty propagation through spectral approaches \cite{Ghanem1991, OLM, Ghanem2017} where quantities of interest are represented by polynomial chaos surrogate models \cite{Wiener,Cameron,Xiu2002,Soize2004}. Constitutive models based on neural networks (NN) have also received growing attention over the past few years, owing to their ability to represent nonlinear mappings in a high dimensional setting. There is a very substantial amount of papers published on this topic, for a wide variety of material behaviors; see, \textit{e.g.},  \cite{flaschel2021unsupervised,xu2021learning,holzapfel2021predictive,jung2006neural,ghaboussi1998autoprogressive,ghaboussi1998new,hashash2004numerical,furukawa1998implicit,joshi2022bayesian,as2022mechanics,Asad-IJNME,KLEIN2022104703} and the references therein, in a non-exhaustive manner. Beyond classical data science aspects that pertain to architecture design, training and validation strategies, and the analysis of approximation capabilities, a central concern is to make such surrogates amenable to scientific simulations where such models are typically set to parameterize systems of partial differential equations. In this context, the surrogate must satisfy both physical assumptions and mathematical properties (\textit{e.g.}, boundedness or a certain type of convexity) to ensure the existence (and potentially, the uniqueness) of solutions. 
+
+The goal of this thesis lies in the construction of mathematically-consistent representation for deep learning methods and uncertainty quatification in computational mechanics. We consider the class of hyperelastic models with a specific interest in soft biological tissues characterized by extensive variability attributed to factors like age, gender, health conditions and microstructural complexity. Uncertainties raised by these factors make it chanllenging to applications such as computer-assisted diagnostics and surgical procedures or the growth of compatible artificial substitutes. In the next section, we'll briefly recall the framework of continuum mechanics of hyperelastic materials that will be used throughout this work.
+
+\section{Background}
+
+\subsection{Constitutive Modeling for Arterial Tissues}
+\label{subsubsec:constitutive-modeling}
+Let $B$ be a collection of material points identified with their vector of coordinates $\bfx$ in $\mathbb{R}^3$, and denote by $\partial B$ the boundary of $B$. For any material point $\bfx \in B$, the spatial point $\bfx_\varphi$ in the deformed configuration $B_\varphi$ is given by $\bfx_\varphi = \varphi (\bfx)$, where $\varphi$ is the deformation map. For any $\bfx \in B$, the deformation gradient $\bfF$ is a second-order tensor defined as $\bfF = \boldsymbol{\nabla}_{\bfx} \bfx_\varphi$. The right Cauchy-Green deformation tensor is defined as $\bfC = \bfF^T \bfF$. For later use, we introduce the isochoric counterpart $\overline{\bfC}$ of $\bfC$, defined as $\overline{\bfC} = J^{-2/3}\bfC$, with $J = \det(\bfF)$ the Jacobian of the transformation. Notice that notations $\bfx$ and $\bfx_\varphi$ to denote points in the reference and deformed configurations, respectively, is unusual in the literature of finite elasticity \cite{Ciarlet1988} but is introduced for the sake of consistency with the rest of this paper---where deterministic vector-valued variables are represented with bold lowercase symbols.
+
+Following standard assumptions \cite{Holzapfel2000,Gasser2006,Holzapfel2010,Holzapfel2015,Holzapfel2017} (see also \cite{Brinkhues2013ModelingAS} and the references therein for instance), the material is assumed to be hyperelastic, nearly-incompressible, and anisotropic. Note that while a transversely isotropic model is considered hereinafter, due to the considered application, the methodological ingredients related to the construction of the stochastic model remain valid for other classes of anisotropy. The nonlinear constitutive model is thus defined by a strain energy density function $\psi:\mathbb{M}^3_+ \to \mathbb{R}$ taken as
+\begin{align}
+    \psi(\bfF) = \psi^{\text{MR}}(\bfF) + \psi^\text{p}(\bfF) + \sum_{k=1}^{2} \psi_{(k)}^\text{ti}(\bfF)\,, \label{eq: strain energy density function}
+\end{align}
+in which $\psi^{\text{MR}}$ denotes an isochoric Mooney-Rivlin strain energy density function, $\psi^\text{p}$ is a penalty term used to account for the near-incompressibility constraint \cite{charrier1988existence}, and $\{\psi_{(k)}^\text{ti}\}_{k = 1}^2$ are anisotropic strain energy density functions to be defined momentarily. The Mooney-Rivlin contribution is given by
+\begin{align}
+    \psi^{\text{MR}}(\bfF) &= \mu_1 \left( \textnormal{tr}(\overline{\bfC}) - 3 \right) + \mu_2 \left( \textnormal{tr}(\text{Cof}(\overline{\bfC}))^{3/2} - 3^{3/2}\right) \label{eq: MR} 
+\end{align}
+with a slight abuse of notation, where $\mu_1$ and $\mu_2$ are strictly positive material parameters, ``$\textnormal{tr}$'' denotes the trace operator and ``$\text{Cof}$'' is the matrix of cofactors, $\text{Cof}(\overline{\bfA}) = \det(\bfA)\bfA^{-T}$ for any matrix $\bfA$. The penalty term is given by
+\begin{align}
+    \psi^\text{p}(\bfF) & = \mu_3 (J^{\beta_3}+J^{-\beta_3} - 2)\,, \label{eq: penalty}
+\end{align}
+where $\mu_3 \in \mathbb{R}_{> 0}$ and $\beta_3 \in \mathbb{R}_{> 2}$ are viewed as numerical model parameters. The anisotropic contribution modeling the stiffening effect of the tissue in tension (only), along a direction defined by a unit vector $\bfa^{(k)}$, is defined as
+\begin{equation}
+    \psi_{(k)}^\text{ti}(\bfF) = \frac{\mu_4}{\beta_4} \left\{ \exp \left(\beta_4 \left( (1-\rho)(\textnormal{tr}(\bfC)-3)^2 + \rho (\vert \vert \bfF \bfa^{(k)} \vert \vert ^2_2 - 1)^2 \right) \right) - 1\right\}\,, \label{eq: psi tissue-artery}
+\end{equation}
+where $\mu_4 \in \mathbb{R}_{> 0}$, $\beta_4 \in \mathbb{R}_{> 0}$, and $\rho \in [0,1]$ are material parameters \cite{holzapfel2005determination}. Following standard modeling assumptions, the unit vectors $\bfa^{(1)}$ and $\bfa^{(2)}$ are defined as
+\begin{equation}    
+    \bfa^{(1)} = \cos(\alpha) \bfe^{(1)} + \sin(\alpha)\bfe^{(2)}\,, \quad 
+    \bfa^{(2)} = \cos(\alpha) \bfe^{(1)} - \sin(\alpha)\bfe^{(2)}\,,
+\end{equation}
+where $\bfe^{(1)}$ and $\bfe^{(2)}$ are unit vectors defining a local basis at every location $\bfx$ in the reference configuration, and $\alpha$ is the angle between tissue orientation and the aforementioned basis. Notice that $\psi_{(1)}^\text{ti} = \psi_{(2)}^\text{ti}$ in this case, owing to the evenness of the right-hand side in Eq.~\eqref{eq: psi tissue-artery}.
+
+\begin{prop}
+The stored energy density function $\psi$ defined by Eq.~\eqref{eq: strain energy density function} is polyconvex and satisfies proper growth conditions, hence ensuring the well-posedness of the nonlinear boundary value problem \cite{Ciarlet1988,ball2002some}.
+\end{prop}
+
+\begin{proof} 
+The strain energy density function $\bfF \mapsto \psi(\bfF)$ is polyconvex if and only if there exists a convex function $\psi^*$ such that
+\begin{align}
+    \psi(\bfF) & = \psi^*(\bfF, \text{Cof}(\bfF), \det(\bfF))
+\end{align}
+for all $\bfF$ in $\mathbb{M}^3$. For an additive decomposition, the above requirement amounts to showing that each term in $\psi$ is a convex function in the associated variable. For the isotropic contribution, the convexity of the functions $\bfF \mapsto \textnormal{tr}(\overline{\bfC}) = \vert \vert \bfF \vert \vert_F^2/(\det(\bfF))^{2/3}$ and $\bfF \mapsto \textnormal{tr}(\text{Cof}(\overline{\bfC}))^{3/2} = \vert \vert \text{Cof}(\bfF) \vert \vert_F^3/(\det(\bfF))^2$ was established in many references; see, e.g., \cite{hartmann2003polyconvexity,schroder2003invariant}. Regarding the anisotropic counterpart, notice first that the convexity of the function $\bfF \mapsto \langle \vert \vert \bfF \bfa_k \vert \vert ^2-1 \rangle^2_m$ was shown in \cite{balzani2006polyconvex}. Since the function $\bfF \mapsto \textnormal{tr}(\bfC)$ is convex, it then follows that the convex combination $(1-\rho)(\textnormal{tr}(\bfC)-3)^2 + \rho \langle \vert \vert \bfF \bfa_k \vert \vert ^2-1 \rangle^2_m$, with $\rho \geq 0$,  also defines a convex function in $\bfF$. For $\beta_4 > 0$, the exponential term in Eq.~\eqref{eq: psi tissue-artery} is thus the composition of a (strictly) convex nondecreasing function and a convex function, and is therefore convex. For $\mu_4 > 0$, the strain energy density function defined is hence polyconvex. For growth conditions, see, e.g., \cite{ball2002some}.
+\end{proof}
+
+\subsection{Definition of the Boundary Value Problem}\label{subsec:def-NBVP}
+
+In a general setting, the strong form of the boundary value problem (balance of linear momentum) in the reference configuration is stated as \cite{wriggers2008nonlinear}
+\begin{align}
+    \boldsymbol{\nabla}_{\bfx} \bf{P} + \bf{b}  = {\bf{0}}\,,& \quad \forall\,\bfx \in {B}\,, \label{eq: stress divergence}\\
+    \bfu = \overline{\bfu}\,,& \quad \forall\, \bfx \in \partial B_D\,,\\
+    \bfP \cdot \bfN = \overline{\bft}\,,& \quad \forall\, \bfx \in \partial B_N\,,
+\end{align}
+where $\boldsymbol{\nabla}_{\bfx}$ denotes the divergence operator in the reference configuration, $\bfP$ is the first Piola-Kirchhoff stress tensor defined as
+\begin{equation}
+    \bfP = \displaystyle{\frac{\partial w(\bfF)}{\partial \bfF}}\,,
+\end{equation}
+the vector $\bfb$ is the body force, $\bfN$ is unit vector normal to the boundary in the reference configuration, $\overline{\bfu}$ and $\overline{\bft}$ are given smooth vector fields on the Dirichlet and Neumann boundaries, denoted by $\partial B_D$ and $\partial B_N$ respectively. The solution to the above problem is classically sought (in an appropriate function space) as a stationary point of the following energy functional \cite{wriggers2008nonlinear}:
+\begin{align}
+    \Pi(\varphi) &= \int_B \psi(\bfF) \, dV - \int_{B} \bfb \cdot \varphi\,dV - \int_{\partial B_N} \overline{\bft} \cdot \varphi\,dA\,.
+\end{align}
+
+\section{Research Contributions}
+
+The main objective of this work is to provide mathematically-consistent representation
+
+
+First, we revisit and extend the methodological steps presented in \cite{STABER201894} to model spatially-varying stochastic anisotropic strain energy density functions. Specifically, regularization is now imposed on the isotropic part of the strain energy density function and the parameterization is extended to account for fluctuations and waviness in the structural tensors and covariance kernel. Second, and more importantly, we address the identification of the model based on experimental results available on human arterial walls, with the goal of providing interested readers with the capability to generate datasets that are consistent with inter-patient fluctuations. We restrict the analysis to the passive mechanical response of the artery: the integration of the active component, which can play an important role in vivo \cite{YOSIBASH201251}, is left for future study. To the authors' best knowledge, this represents the first contribution where both the stochastic model and the calibrated hyperparameters are presented in a self-contained manner. This may, in particular, support the development of data-driven frameworks, which are increasingly used to model and classify the behavior of such soft biological tissues (see \cite{Holzapfel2021} as an example). It is also important to note that the methodology of construction is applicable for modeling other classes of materials, such as engineered composite laminates that can be experimentally characterized through full-field measurement techniques.
+
+we aim to construct a convex neural network model without affecting expressiveness (that is, without constraining weights \textit{a priori}) and training cost (which can be affected by transformations performed on weights at the training stage).
+
+\section{Contribution}
