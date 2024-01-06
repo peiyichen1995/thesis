@@ -87,7 +87,7 @@
 % PREAMBLE 
 %-----------------------------------------------------------------------------%
 \author{Peiyi Chen}
-\title{[(Test) Your Title Here Even If It Is Very Very Very Very Very Very Long. Truly It Is A Miraculously Long Title For A Dissertation]}
+\title{On the Construction of Admissible Representations for Scientific Machine Learning and Uncertainty Quantification, With Various Applications in Computational Mechanics}
 \supervisor{Johann Guilleminot}
 \department{Mechanical Engineering and Materials Science} % Appears as Department of \department
 % Declare dissertation subject used on UMI abstract page.  List of
@@ -131,169 +131,169 @@
 \newtheorem{prop}{Proposition}
 
 %% MACROS
-\newcommand\bfa{\boldsymbol{a}}
-\newcommand\bfb{\boldsymbol{b}}
-\newcommand\bfc{\boldsymbol{c}}
-\newcommand\bfd{\boldsymbol{d}}
-\newcommand\bfe{\boldsymbol{e}}
-\newcommand\bff{\boldsymbol{f}}
-\newcommand\bfg{\boldsymbol{g}}
-\newcommand\bfh{\boldsymbol{h}}
-\newcommand\bfi{\boldsymbol{i}}
-\newcommand\bfj{\boldsymbol{j}}
-\newcommand\bfk{\boldsymbol{k}}
-\newcommand\bfl{\boldsymbol{l}}
-\newcommand\bfm{\boldsymbol{m}}
-\newcommand\bfn{\boldsymbol{n}}
-\newcommand\bfo{\boldsymbol{o}}
-\newcommand\bfp{\boldsymbol{p}}
-\newcommand\bfq{\boldsymbol{q}}
-\newcommand\bfr{\boldsymbol{r}}
-\newcommand\bfs{\boldsymbol{s}}
-\newcommand\bft{\boldsymbol{t}}
-\newcommand\bfu{\boldsymbol{u}}
-\newcommand\bfv{\boldsymbol{v}}
-\newcommand\bfw{\boldsymbol{w}}
-\newcommand\bfx{\boldsymbol{x}}
-\newcommand\bfy{\boldsymbol{y}}
-\newcommand\bfz{\boldsymbol{z}}
+\newcommand\bfa{{\boldsymbol{a}}}
+\newcommand\bfb{{\boldsymbol{b}}}
+\newcommand\bfc{{\boldsymbol{c}}}
+\newcommand\bfd{{\boldsymbol{d}}}
+\newcommand\bfe{{\boldsymbol{e}}}
+\newcommand\bff{{\boldsymbol{f}}}
+\newcommand\bfg{{\boldsymbol{g}}}
+\newcommand\bfh{{\boldsymbol{h}}}
+% \newcommand\bfi{{\boldsymbol{i}}}
+% \newcommand\bfj{{\boldsymbol{j}}}
+\newcommand\bfk{{\boldsymbol{k}}}
+\newcommand\bfl{{\boldsymbol{l}}}
+\newcommand\bfm{{\boldsymbol{m}}}
+\newcommand\bfn{{\boldsymbol{n}}}
+\newcommand\bfo{{\boldsymbol{o}}}
+\newcommand\bfp{{\boldsymbol{p}}}
+\newcommand\bfq{{\boldsymbol{q}}}
+\newcommand\bfr{{\boldsymbol{r}}}
+\newcommand\bfs{{\boldsymbol{s}}}
+\newcommand\bft{{\boldsymbol{t}}}
+\newcommand\bfu{{\boldsymbol{u}}}
+% \newcommand\bfv{{\boldsymbol{v}}}
+\newcommand\bfw{{\boldsymbol{w}}}
+\newcommand\bfx{{\boldsymbol{x}}}
+\newcommand\bfy{{\boldsymbol{y}}}
+\newcommand\bfz{{\boldsymbol{z}}}
 %
-\newcommand\bfA{\boldsymbol{A}}
-\newcommand\bfB{\boldsymbol{B}}
-\newcommand\bfC{\boldsymbol{C}}
-\newcommand\bfD{\boldsymbol{D}}
-\newcommand\bfE{\boldsymbol{E}}
-\newcommand\bfF{\boldsymbol{F}}
-\newcommand\bfG{\boldsymbol{G}}
-\newcommand\bfH{\boldsymbol{H}}
-\newcommand\bfI{\boldsymbol{I}}
-\newcommand\bfJ{\boldsymbol{J}}
-\newcommand\bfK{\boldsymbol{K}}
-\newcommand\bfL{\boldsymbol{L}}
-\newcommand\bfM{\boldsymbol{M}}
-\newcommand\bfN{\boldsymbol{N}}
-\newcommand\bfO{\boldsymbol{O}}
-\newcommand\bfP{\boldsymbol{P}}
-\newcommand\bfQ{\boldsymbol{Q}}
-\newcommand\bfR{\boldsymbol{R}}
-\newcommand\bfS{\boldsymbol{S}}
-\newcommand\bfT{\boldsymbol{T}}
-\newcommand\bfU{\boldsymbol{U}}
-\newcommand\bfV{\boldsymbol{V}}
-\newcommand\bfW{\boldsymbol{W}}
-\newcommand\bfX{\boldsymbol{X}}
-\newcommand\bfY{\boldsymbol{Y}}
-\newcommand\bfZ{\boldsymbol{Z}}
+\newcommand\bfA{{\boldsymbol{A}}}
+\newcommand\bfB{{\boldsymbol{B}}}
+\newcommand\bfC{{\boldsymbol{C}}}
+\newcommand\bfD{{\boldsymbol{D}}}
+\newcommand\bfE{{\boldsymbol{E}}}
+\newcommand\bfF{{\boldsymbol{F}}}
+\newcommand\bfG{{\boldsymbol{G}}}
+\newcommand\bfH{{\boldsymbol{H}}}
+\newcommand\bfI{{\boldsymbol{I}}}
+\newcommand\bfJ{{\boldsymbol{J}}}
+\newcommand\bfK{{\boldsymbol{K}}}
+\newcommand\bfL{{\boldsymbol{L}}}
+\newcommand\bfM{{\boldsymbol{M}}}
+\newcommand\bfN{{\boldsymbol{N}}}
+\newcommand\bfO{{\boldsymbol{O}}}
+\newcommand\bfP{{\boldsymbol{P}}}
+\newcommand\bfQ{{\boldsymbol{Q}}}
+\newcommand\bfR{{\boldsymbol{R}}}
+\newcommand\bfS{{\boldsymbol{S}}}
+\newcommand\bfT{{\boldsymbol{T}}}
+\newcommand\bfU{{\boldsymbol{U}}}
+\newcommand\bfV{{\boldsymbol{V}}}
+\newcommand\bfW{{\boldsymbol{W}}}
+\newcommand\bfX{{\boldsymbol{X}}}
+\newcommand\bfY{{\boldsymbol{Y}}}
+\newcommand\bfZ{{\boldsymbol{Z}}}
 
 \newcommand{\diff}[1]{\text{ d}#1}
 
-\newcommand{\bta}{\textbf{a}}
-\newcommand{\btb}{\textbf{b}}
-\newcommand{\btc}{\textbf{c}}
-\newcommand{\btd}{\textbf{d}}
-\newcommand{\bte}{\textbf{e}}
-\newcommand{\btf}{\textbf{f}}
-\newcommand{\btg}{\textbf{g}}
-\newcommand{\bth}{\textbf{h}}
-\newcommand{\bti}{\textbf{i}}
-\newcommand{\btj}{\textbf{j}}
-\newcommand{\btk}{\textbf{k}}
-\newcommand{\btl}{\textbf{l}}
-\newcommand{\btm}{\textbf{m}}
-\newcommand{\btn}{\textbf{n}}
-\newcommand{\bto}{\textbf{o}}
-\newcommand{\btp}{\textbf{p}}
-\newcommand{\btq}{\textbf{q}}
-\newcommand{\btr}{\textbf{r}}
-\newcommand{\bts}{\textbf{s}}
-\newcommand{\btt}{\textbf{t}}
-\newcommand{\btu}{\textbf{u}}
-\newcommand{\btv}{\textbf{v}}
-\newcommand{\btw}{\textbf{w}}
-\newcommand{\btx}{\textbf{x}}
-\newcommand{\bty}{\textbf{y}}
-\newcommand{\btz}{\textbf{z}}
+\newcommand{\bta}{{\textbf{a}}}
+\newcommand{\btb}{{\textbf{b}}}
+\newcommand{\btc}{{\textbf{c}}}
+\newcommand{\btd}{{\textbf{d}}}
+\newcommand{\bte}{{\textbf{e}}}
+\newcommand{\btf}{{\textbf{f}}}
+\newcommand{\btg}{{\textbf{g}}}
+\newcommand{\bth}{{\textbf{h}}}
+\newcommand{\bti}{{\textbf{i}}}
+\newcommand{\btj}{{\textbf{j}}}
+\newcommand{\btk}{{\textbf{k}}}
+\newcommand{\btl}{{\textbf{l}}}
+\newcommand{\btm}{{\textbf{m}}}
+\newcommand{\btn}{{\textbf{n}}}
+\newcommand{\bto}{{\textbf{o}}}
+\newcommand{\btp}{{\textbf{p}}}
+\newcommand{\btq}{{\textbf{q}}}
+\newcommand{\btr}{{\textbf{r}}}
+\newcommand{\bts}{{\textbf{s}}}
+\newcommand{\btt}{{\textbf{t}}}
+\newcommand{\btu}{{\textbf{u}}}
+\newcommand{\btv}{{\textbf{v}}}
+\newcommand{\btw}{{\textbf{w}}}
+\newcommand{\btx}{{\textbf{x}}}
+\newcommand{\bty}{{\textbf{y}}}
+\newcommand{\btz}{{\textbf{z}}}
 
-\newcommand{\btA}{\textbf{A}}
-\newcommand{\btB}{\textbf{B}}
-\newcommand{\btC}{\textbf{C}}
-\newcommand{\btD}{\textbf{D}}
-\newcommand{\btE}{\textbf{E}}
-\newcommand{\btF}{\textbf{F}}
-\newcommand{\btG}{\textbf{G}}
-\newcommand{\btH}{\textbf{H}}
-\newcommand{\btI}{\textbf{I}}
-\newcommand{\btJ}{\textbf{J}}
-\newcommand{\btK}{\textbf{K}}
-\newcommand{\btL}{\textbf{L}}
-\newcommand{\btM}{\textbf{M}}
-\newcommand{\btN}{\textbf{N}}
-\newcommand{\btO}{\textbf{O}}
-\newcommand{\btP}{\textbf{P}}
-\newcommand{\btQ}{\textbf{Q}}
-\newcommand{\btR}{\textbf{R}}
-\newcommand{\btS}{\textbf{S}}
-\newcommand{\btT}{\textbf{T}}
-\newcommand{\btU}{\textbf{U}}
-\newcommand{\btV}{\textbf{V}}
-\newcommand{\btW}{\textbf{W}}
-\newcommand{\btX}{\textbf{X}}
-\newcommand{\btY}{\textbf{Y}}
-\newcommand{\btZ}{\textbf{Z}}
+\newcommand{\btA}{{\textbf{A}}}
+\newcommand{\btB}{{\textbf{B}}}
+\newcommand{\btC}{{\textbf{C}}}
+\newcommand{\btD}{{\textbf{D}}}
+\newcommand{\btE}{{\textbf{E}}}
+\newcommand{\btF}{{\textbf{F}}}
+\newcommand{\btG}{{\textbf{G}}}
+\newcommand{\btH}{{\textbf{H}}}
+\newcommand{\btI}{{\textbf{I}}}
+\newcommand{\btJ}{{\textbf{J}}}
+\newcommand{\btK}{{\textbf{K}}}
+\newcommand{\btL}{{\textbf{L}}}
+\newcommand{\btM}{{\textbf{M}}}
+\newcommand{\btN}{{\textbf{N}}}
+\newcommand{\btO}{{\textbf{O}}}
+\newcommand{\btP}{{\textbf{P}}}
+\newcommand{\btQ}{{\textbf{Q}}}
+\newcommand{\btR}{{\textbf{R}}}
+\newcommand{\btS}{{\textbf{S}}}
+\newcommand{\btT}{{\textbf{T}}}
+\newcommand{\btU}{{\textbf{U}}}
+\newcommand{\btV}{{\textbf{V}}}
+\newcommand{\btW}{{\textbf{W}}}
+\newcommand{\btX}{{\textbf{X}}}
+\newcommand{\btY}{{\textbf{Y}}}
+\newcommand{\btZ}{{\textbf{Z}}}
 
-\newcommand{\rta}{\text{a}}
-\newcommand{\rtb}{\text{b}}
-\newcommand{\rtc}{\text{c}}
-\newcommand{\rtd}{\text{d}}
-\newcommand{\rte}{\text{e}}
-\newcommand{\rtf}{\text{f}}
-\newcommand{\rtg}{\text{g}}
-\newcommand{\rth}{\text{h}}
-\newcommand{\rti}{\text{i}}
-\newcommand{\rtj}{\text{j}}
-\newcommand{\rtk}{\text{k}}
-\newcommand{\rtl}{\text{l}}
-\newcommand{\rtm}{\text{m}}
-\newcommand{\rtn}{\text{n}}
-\newcommand{\rto}{\text{o}}
-\newcommand{\rtp}{\text{p}}
-\newcommand{\rtq}{\text{q}}
-\newcommand{\rtr}{\text{r}}
-\newcommand{\rts}{\text{s}}
-\newcommand{\rtt}{\text{t}}
-\newcommand{\rtu}{\text{u}}
-\newcommand{\rtv}{\text{v}}
-\newcommand{\rtw}{\text{w}}
-\newcommand{\rtx}{\text{x}}
-\newcommand{\rty}{\text{y}}
-\newcommand{\rtz}{\text{z}}
+\newcommand{\rta}{{\text{a}}}
+\newcommand{\rtb}{{\text{b}}}
+\newcommand{\rtc}{{\text{c}}}
+\newcommand{\rtd}{{\text{d}}}
+\newcommand{\rte}{{\text{e}}}
+\newcommand{\rtf}{{\text{f}}}
+\newcommand{\rtg}{{\text{g}}}
+\newcommand{\rth}{{\text{h}}}
+\newcommand{\rti}{{\text{i}}}
+\newcommand{\rtj}{{\text{j}}}
+\newcommand{\rtk}{{\text{k}}}
+\newcommand{\rtl}{{\text{l}}}
+\newcommand{\rtm}{{\text{m}}}
+\newcommand{\rtn}{{\text{n}}}
+\newcommand{\rto}{{\text{o}}}
+\newcommand{\rtp}{{\text{p}}}
+\newcommand{\rtq}{{\text{q}}}
+\newcommand{\rtr}{{\text{r}}}
+\newcommand{\rts}{{\text{s}}}
+\newcommand{\rtt}{{\text{t}}}
+\newcommand{\rtu}{{\text{u}}}
+\newcommand{\rtv}{{\text{v}}}
+\newcommand{\rtw}{{\text{w}}}
+\newcommand{\rtx}{{\text{x}}}
+\newcommand{\rty}{{\text{y}}}
+\newcommand{\rtz}{{\text{z}}}
 
-\newcommand{\rtA}{\text{A}}
-\newcommand{\rtB}{\text{B}}
-\newcommand{\rtC}{\text{C}}
-\newcommand{\rtD}{\text{D}}
-\newcommand{\rtE}{\text{E}}
-\newcommand{\rtF}{\text{F}}
-\newcommand{\rtG}{\text{G}}
-\newcommand{\rtH}{\text{H}}
-\newcommand{\rtI}{\text{I}}
-\newcommand{\rtJ}{\text{J}}
-\newcommand{\rtK}{\text{K}}
-\newcommand{\rtL}{\text{L}}
-\newcommand{\rtM}{\text{M}}
-\newcommand{\rtN}{\text{N}}
-\newcommand{\rtO}{\text{O}}
-\newcommand{\rtP}{\text{P}}
-\newcommand{\rtQ}{\text{Q}}
-\newcommand{\rtR}{\text{R}}
-\newcommand{\rtS}{\text{S}}
-\newcommand{\rtT}{\text{T}}
-\newcommand{\rtU}{\text{U}}
-\newcommand{\rtV}{\text{V}}
-\newcommand{\rtW}{\text{W}}
-\newcommand{\rtX}{\text{X}}
-\newcommand{\rtY}{\text{Y}}
-\newcommand{\rtZ}{\text{Z}}
+\newcommand{\rtA}{{\text{A}}}
+\newcommand{\rtB}{{\text{B}}}
+\newcommand{\rtC}{{\text{C}}}
+\newcommand{\rtD}{{\text{D}}}
+\newcommand{\rtE}{{\text{E}}}
+\newcommand{\rtF}{{\text{F}}}
+\newcommand{\rtG}{{\text{G}}}
+\newcommand{\rtH}{{\text{H}}}
+\newcommand{\rtI}{{\text{I}}}
+\newcommand{\rtJ}{{\text{J}}}
+\newcommand{\rtK}{{\text{K}}}
+\newcommand{\rtL}{{\text{L}}}
+\newcommand{\rtM}{{\text{M}}}
+\newcommand{\rtN}{{\text{N}}}
+\newcommand{\rtO}{{\text{O}}}
+\newcommand{\rtP}{{\text{P}}}
+\newcommand{\rtQ}{{\text{Q}}}
+\newcommand{\rtR}{{\text{R}}}
+\newcommand{\rtS}{{\text{S}}}
+\newcommand{\rtT}{{\text{T}}}
+\newcommand{\rtU}{{\text{U}}}
+\newcommand{\rtV}{{\text{V}}}
+\newcommand{\rtW}{{\text{W}}}
+\newcommand{\rtX}{{\text{X}}}
+\newcommand{\rtY}{{\text{Y}}}
+\newcommand{\rtZ}{{\text{Z}}}
 
 \DeclareMathOperator*{\argmin}{argmin}
 
@@ -322,6 +322,25 @@
 %%
 
 %%PLOM
+
+\font\ppppppcarac=ptmr8y at 4pt
+\font\pppppcarac=ptmr8y at 5pt
+\font\ppppcarac=ptmr8y at 6pt
+\font\pppcarac=ptmr8y at 7pt
+\font\ppcarac=ptmr8y at 8pt
+\font\pcarac=ptmr8y at 9pt
+\font\Pcarac=ptmr8y at 9pt
+\font\carac=ptmr8y at 9pt
+
+\font\PPcarac=ptmr8y at 12pt
+\font\Ppcarac=ptmr8y at 10pt
+\font\bf=ptmb8y at 10pt
+\font\pbf=ptmb8y at 9pt
+\font\ppbf=ptmb8y at 6pt
+
+\DeclareMathAlphabet{\mathonebb}{U}{bbold}{m}{n}
+\def\PhiPhi{{\ensuremath{\mathonebb{\Phi}}}}
+
 \newcommand{\bfnabla}{{{\boldsymbol{\nabla}}}}
 \newcommand{\bfun}{{\boldsymbol{1}}}
 \newcommand{\bfzero}{{ \hbox{\bf 0} }}
@@ -463,6 +482,56 @@
 \newcommand{\bfcurX}{\boldsymbol{\mathcal{X}}}
 \newcommand{\bfcurY}{\boldsymbol{\mathcal{Y}}}
 \newcommand{\bfcurZ}{\boldsymbol{\mathcal{Z}}}
+
+\font\bf=ptmb8y at 10pt
+\font\pbf=ptmb8y at 7pt
+\font\vcarac=ptmr8y at 10pt
+\font\pvcarac=ptmr8y at 7pt
+
+\newcommand{\bfv}{{\hbox{\bf{v}}}}      % boldface lower case letter \bfv must be very different from greek letter \nu
+\newcommand{\pbfv}{{\hbox{\pbf{v}}}}    % boldface lower case letter \bfv must be very different from greek letter \nu
+\newcommand{\vc}{{\hbox{\vcarac{v}}}}   % lower case letter \bfv must be very different from greek letter \nu
+\newcommand{\pvc}{{\hbox{\pvcarac{v}}}} % ower case letter \bfv must be very different from greek letter \nu
+\newcommand{\bfi}{{\hbox{\bf{i}}}}
+\newcommand{\pbfi}{{\hbox{\pbf{i}}}}
+\newcommand{\bfj}{{\hbox{\bf{j}}}}
+\newcommand{\pbfj}{{\hbox{\pbf{j}}}}
+
+\newcommand{\tblue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\ad}{{{\hbox{{\pppcarac ad}}}}}
+\newcommand{\adp}{{{\hbox{{\ppppcarac ad}}}}}
+\newcommand{\adpp}{{{\hbox{{\ppppcarac ad}}}}}
+\newcommand{\ar}{{\hbox{{\pppcarac ar}}}}
+\newcommand{\arp}{{\hbox{{\ppppcarac ar}}}}
+\newcommand{\arpp}{{\hbox{{\pppppcarac ar}}}}
+\newcommand{\arppp}{{\hbox{{\pppppcarac ar}}}}
+% \newcommand{\cov}{\hbox{{\Ppcarac cov}}}
+\newcommand{\DM}{{\hbox{{\pppppcarac DM}}}}
+\newcommand{\erf}{{\hbox{\PPcarac erf}}}
+\newcommand{\err}{\hbox{{\Ppcarac err}}}
+\newcommand{\errp}{\hbox{{\ppcarac err}}}
+\newcommand{\errpp}{\hbox{{\pppcarac err}}}
+\newcommand{\Jump}{{\hbox{{\ppcarac Jump}}}}
+\newcommand{\opt}{{\hbox{{\pppcarac opt}}}}
+\newcommand{\popt}{{\hbox{{\ppppcarac opt}}}}
+\newcommand{\ppopt}{{\hbox{{\pppppcarac opt}}}}
+\newcommand{\MC}{{\hbox{{\ppppcarac MC}}}}
+\newcommand{\pMC}{{\hbox{{\pppppcarac MC}}}}
+\newcommand{\ppMC}{{\hbox{{\ppppppcarac MC}}}}
+\newcommand{\PCA}{{{\hbox{{\pppppcarac PCA}}}}}
+
+\newcommand{\dispp}{{{\hbox{{\ppppcarac disp}}}}}
+\newcommand{\disppp}{{{\hbox{{\pppppcarac disp}}}}}
+
+\newcommand{\hypp}{{{\hbox{{\ppppcarac hyp}}}}}
+\newcommand{\hyppp}{{{\hbox{{\pppppcarac hyp}}}}}
+
+\newcommand{\training}{{\hbox{{\pppcarac train}}}}
+\newcommand{\ptraining}{{\hbox{{\ppppcarac train}}}}
+\newcommand{\pptraining}{{\hbox{{\pppppcarac train}}}}
+\newcommand{\wien}{{\hbox{{\pppcarac wien}}}}
+\newcommand{\pwien}{{\hbox{{\ppppcarac wien}}}}
 
 \AtBeginBibliography{\vspace*{\baselineskip}}
 \setlength{\bibitemsep}{\baselineskip}
