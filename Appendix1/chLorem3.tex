@@ -54,111 +54,111 @@ where $\bs{M}^{-1}$ can be evaluated by applying a lumping procedure. For $\alph
 
 \chapter{Nonlinear-Manifold Reduced-Order Model and Operator Learning}
 \section{Reduced-Order Model Solutions}
-In this Appendix, additional solution snapshots are provided, together with absolute errors, to assess the accuracy of the presented frameworks.
-\begin{figure}[!htb]
+In this Appendix, additional solution snapshots are provided, together with pointwise absolute errors, to assess the accuracy of the presented frameworks.
+\begin{figure}[ht!]
      \begin{center}
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-DAE-5.png}
             \end{center}
             \caption{Solution $r = 5$}
         \end{subfigure}
-   \begin{subfigure}[b]{0.23\textwidth}
+   \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-DAE-10.png}
             \end{center}
             \caption{Solution $r = 10$}
         \end{subfigure}
-   \begin{subfigure}[b]{0.23\textwidth}
+   \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-DAE-15.png}
             \end{center}
             \caption{Solution $r = 15$}
         \end{subfigure}
-   \begin{subfigure}[b]{0.23\textwidth}
+   \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-DAE-20.png}
             \end{center}
             \caption{Solution $r = 20$}
         \end{subfigure}\\  
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-DAE-5-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 5$}
+            \caption{Error $r = 5$}
         \end{subfigure}  
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-DAE-10-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 10$}
+            \caption{Error $r = 10$}
         \end{subfigure}   
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-DAE-15-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 15$}
+            \caption{Error $r = 15$}
         \end{subfigure}    
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-DAE-20-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 20$}
+            \caption{Error $r = 20$}
         \end{subfigure}
      \end{center}
      \caption[Solutions and pointwise errors for LE-DAE-DNNOp.]{Solutions (a, b, c, d) and pointwise errors (e, f, g, h) for LE-DAE-DNNOp with different latent space dimensions.}
         \label{fig: ledae-burger}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[ht!]
      \begin{center}
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-SAE-5.png}
             \end{center}
             \caption{Solution $r = 5$}
         \end{subfigure}
-   \begin{subfigure}[b]{0.23\textwidth}
+   \begin{subfigure}[b]{0.20\textwidth}
         \begin{center}
             \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-SAE-10.png}
         \end{center}
             \caption{Solution $r = 10$}
         \end{subfigure}
-   \begin{subfigure}[b]{0.23\textwidth}
+   \begin{subfigure}[b]{0.20\textwidth}
        \begin{center}
         \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-SAE-15.png}
        \end{center}
             \caption{Solution $r = 15$}
         \end{subfigure}
-   \begin{subfigure}[b]{0.23\textwidth}
+   \begin{subfigure}[b]{0.20\textwidth}
        \begin{center}
         \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-SAE-20.png}
        \end{center}
             \caption{Solution $r = 20$}
         \end{subfigure}\\  
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-SAE-5-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 5$}
+            \caption{Error $r = 5$}
         \end{subfigure}  
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-SAE-10-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 10$}
+            \caption{Error $r = 10$}
         \end{subfigure}   
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-SAE-15-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 15$}
+            \caption{Error $r = 15$}
         \end{subfigure}    
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-SAE-20-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 20$}
+            \caption{Error $r = 20$}
         \end{subfigure}
      \end{center}
      \caption[Solutions and pointwise errors for LE-SAE-DNNOp.]{Solutions (a, b, c, d) and pointwise errors (e, f, g, h) for LE-SAE-DNNOp with different latent space dimensions.}
@@ -166,110 +166,110 @@ In this Appendix, additional solution snapshots are provided, together with abso
 \end{figure}
 
 
-\begin{figure}[!htb]
+\begin{figure}[ht!]
      \begin{center}
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-CNNAE-5.png}
             \end{center}
              \caption{Solution $r = 5$}
          \end{subfigure}
-    \begin{subfigure}[b]{0.23\textwidth}
+    \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-CNNAE-10.png}
             \end{center}
              \caption{Solution $r = 10$}
          \end{subfigure}
-    \begin{subfigure}[b]{0.23\textwidth}
+    \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-CNNAE-15.png}
             \end{center}
              \caption{Solution $r = 15$}
          \end{subfigure}
-    \begin{subfigure}[b]{0.23\textwidth}
+    \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-CNNAE-20.png}
             \end{center}
              \caption{Solution $r = 20$}
          \end{subfigure}\\  
-         \begin{subfigure}[b]{0.23\textwidth}
+         \begin{subfigure}[b]{0.20\textwidth}
              \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-CNNAE-5-abs-err.png}
              \end{center}
-             \caption{Absolute error $r = 5$}
+             \caption{Error $r = 5$}
          \end{subfigure}  
-         \begin{subfigure}[b]{0.23\textwidth}
+         \begin{subfigure}[b]{0.20\textwidth}
              \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-CNNAE-10-abs-err.png}
              \end{center}
-             \caption{Absolute error $r = 10$}
+             \caption{Error $r = 10$}
          \end{subfigure}   
-         \begin{subfigure}[b]{0.23\textwidth}
+         \begin{subfigure}[b]{0.20\textwidth}
              \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-CNNAE-15-abs-err.png}
              \end{center}
-             \caption{Absolute error $r = 15$}
+             \caption{Error $r = 15$}
          \end{subfigure}    
-         \begin{subfigure}[b]{0.23\textwidth}
+         \begin{subfigure}[b]{0.20\textwidth}
              \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-LE-CNNAE-20-abs-err.png}
              \end{center}
-             \caption{Absolute error $r = 20$}
+             \caption{Error $r = 20$}
          \end{subfigure}
      \end{center}
      \caption[Solutions and pointwise errors for LE-CNNAE-DNNOp.]{Solutions (a, b, c, d) and pointwise errors (e, f, g, h) for LE-CNNAE-DNNOp with different latent space dimensions.}
         \label{fig: lecnnae-burger}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[ht!]
      \begin{center}
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
        \begin{center}
         \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-NE-DAE-5.png}
        \end{center}
             \caption{Solution $r = 5$}
         \end{subfigure}
-   \begin{subfigure}[b]{0.23\textwidth}
+   \begin{subfigure}[b]{0.20\textwidth}
         \begin{center}
             \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-NE-DAE-10.png}
         \end{center}
             \caption{Solution $r = 10$}
         \end{subfigure}
-   \begin{subfigure}[b]{0.23\textwidth}
+   \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-NE-DAE-15.png}
             \end{center}
             \caption{Solution $r = 15$}
         \end{subfigure}
-   \begin{subfigure}[b]{0.23\textwidth}
+   \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-NE-DAE-20.png}
             \end{center}
             \caption{Solution $r = 20$}
         \end{subfigure}\\  
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-NE-DAE-5-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 5$}
+            \caption{Error $r = 5$}
         \end{subfigure}  
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-NE-DAE-10-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 10$}
+            \caption{Error $r = 10$}
         \end{subfigure}   
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
             \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-NE-DAE-15-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 15$}
+            \caption{Error $r = 15$}
         \end{subfigure}    
-        \begin{subfigure}[b]{0.23\textwidth}
+        \begin{subfigure}[b]{0.20\textwidth}
             \begin{center}
                 \includegraphics[trim = {0, 0, 3cm, 0}, clip, width=\textwidth]{Pictures/X-rom-NE-DAE-20-abs-err.png}
             \end{center}
-            \caption{Absolute error $r = 20$}
+            \caption{Error $r = 20$}
         \end{subfigure}
      \end{center}
      \caption[Solutions and pointwise errors for NE-DAE-DNNOp.]{Solutions (a, b, c, d) and pointwise errors (e, f, g, h) for NE-DAE-DNNOp with different latent space dimensions.}
@@ -327,7 +327,7 @@ From Eq.~\eqref{eqPLoMA3}, the following formulas for conditional statistics are
 %
 \begin{equation}
     E\{Q \, \vert \, \bfW = \bfw_0\} = \underline{q} + \sigma_{\! Q}\, \frac{\sum_{\ell=1}^{n_\ar}\widetilde{q}^{\ell}_{\ar} \times \exp({-\frac{1}{2s^2}\Vert \widetilde{\bfw}_{0}  -\widetilde{\bfw}^\ell_\ar \Vert^2})}{\sum_{\ell =  1}^{n_\ar}\exp({-\frac{1}{2s^2}\Vert \widetilde{\bfw}_{0} - \widetilde{\bfw}^\ell_\ar \Vert^2})} \,.
-     \label{eqPLoM6}
+    %  \label{eqPLoM6}
 \end{equation}
 %
 
@@ -339,7 +339,7 @@ From Eq.~\eqref{eqPLoMA3}, the following formulas for conditional statistics are
        \exp({-\frac{1}{2s^2}( \widetilde{q} - \widetilde{q}^\ell_\ar )^2})      
       \times \exp({-\frac{1}{2s^2}\Vert \widetilde{\bfw}_{0}  -\widetilde{\bfw}^\ell_\ar \Vert^2})}{\sum_{\ell =  1}^{n_\ar}\exp({-\frac{1}{2s^2}\Vert \widetilde{\bfw}_{0} - \widetilde{\bfw}^\ell_\ar \Vert^2})} \quad , \quad
       \widetilde{q} = (q - \underline{q}) /{{\sigma_{\! Q}}} \, .
-     \label{eqPLoM7}
+    %  \label{eqPLoM7}
 \end{equation}
 %
 
