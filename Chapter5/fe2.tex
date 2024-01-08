@@ -33,10 +33,11 @@ In this work, we apply a Dirichlet boundary condition $\overline{\bfu}$ on $\par
 \subsection{Definition of the Macroscopic Problem in the Context of Concurrent Multiscale Approaches}\label{subsec:def-mac-pb}
 
 Let $\Omega_\text{mac} \subset \Omega_\text{str}$ denote the reference configuration for the subdomain where the surrogate must be constructed, and denote by $\partial \Omega_\text{mac}$ its boundary (see Fig.~\ref{fig:scales}).
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width = 0.3\textwidth]{Pictures/Fig-Scales.png}
-    \caption{Definition of scales in the concurrent multiscale simulations. Fluctuations in the first Lam\'e parameter $\lambda$ are introduced at fine scale.}
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width = 0.5\textwidth]{Pictures/Fig-Scales.png}
+    \end{center}
+    \caption[Definition of scales in the concurrent multiscale simulations.]{Definition of scales in the concurrent multiscale simulations. Fluctuations in the first Lam\'e parameter $\lambda$ are introduced at fine scale.}
     \label{fig:scales}
 \end{figure}
 Let $\overline{\bfu}_{\text{mac}}$ be the restriction of the solution to the structural problem (defined in the previous section) to the boundary $\partial \Omega_\text{mac}$. The strong form of the boundary value problem in the reference configuration of $\Omega_\text{mac}$ is stated as
@@ -85,12 +86,13 @@ where $P_{\text{ME}}$ is the probability measure induced by entropy maximization
 where $F_{\curG}^{-1}$ is the inverse cumulative distribution function of the Gamma distribution with shape and scale parameters given by $\delta_{\lambda}^{-2}$ and $\underline{\lambda}\delta_{\lambda}^{-2}$, respectively, and $F_{\curN(0,1)}$ is the cumulative distribution function of the standard Gaussian distribution. Notice that these hyperparameters can be made spatially-dependent to improve expressiveness in the model: this sophistication is, however, irrelevant for the objectives pursued in this paper. 
 
 In the applications presented below, the underlying Gaussian random field $\{\Xi(\bfx), \bfx \in \mathbb{R}^d\}$ is sampled using a truncated Karhunen-Lo\`eve expansion, with an order of truncation determined such that the $L^2$ error falls below a given threshold (chosen as $1\mathrm{e}{-2}$). Samples for both the Gaussian and non-Gaussian random fields are shown in Fig.~\ref{fig:samples}, for $\underline{\lambda} = 40\,000$, $\delta_{\lambda} = 0.2$, and $L_c = 0.3$.
-\begin{figure}[ht!]
-    \centering
-    \subfloat[Sample of $\{\Xi(\bfx), \bfx \in \Omega_{\text{str}}\}$.]{\includegraphics[width=0.44\textwidth]{Pictures/Gaussian_sample_1.png}}
+\begin{figure}[!htb]
+    \begin{center}
+        \subfloat[Sample of $\{\Xi(\bfx), \bfx \in \Omega_{\text{str}}\}$.]{\includegraphics[width=0.44\textwidth]{Pictures/Gaussian_sample_1.png}}
     \hspace{0.05\textwidth}
     \subfloat[Sample of $\{\lambda(\bfx), \bfx \in \Omega_{\text{str}}\}$ computed from (a).]{\includegraphics[width=0.44\textwidth]{Pictures/NonGaussian_sample_1.png}}
-    \caption{Realizations of the underlying Gaussian field (left) and material parameter random field (right).}
+    \end{center}
+    \caption[Realizations of the underlying Gaussian field and material parameter random field.]{Realizations of the underlying Gaussian field (left) and material parameter random field (right).}
     \label{fig:samples}
 \end{figure}
 
@@ -126,35 +128,45 @@ For the sake of illustration, we consider the structural domain $\Omega_{\text{s
 As described in the previous section, the solution vector $\bfu$ in $\Omega_\text{str}$ along the boundary $\partial \Omega_\text{mac}$ of $\Omega_\text{mac}$ is applied as the Dirichlet boundary condition for the multi-scale problem. 
 
 Implementation was performed within the MOOSE finite element framework \cite{permann2020moose}. A convergence study on the solution on $\Omega_\text{str}$ was first conducted. The solution obtained with a very fine mesh containing 960 elements per direction was used, with material parameters given by $\lambda = 40\,000$ [kg/cm$^2$] and $\mu = 10\,000$ [kg/cm$^2$] (these values, taken from \cite{picinbono2003non}, correspond to a soft biological tissue, modeled as a Saint Venant–Kirchhoff material). Regarding numerical solving, a standard Newton-Raphson solver was used with a maximum number of nonlinear iterations set to 25, with a relative tolerance taken as $1\mathrm{e}{-10}$, and an absolute tolerance given by $1\mathrm{e}{-12}$. The convergence order is measured by the $L^2$-norm of the difference between the approximation $u^h$ and the reference solution $u^{\text{ref}}$ within the domain $[1, 2]^2$. Standard $h$-convergence is observed, as illustrated in Fig.~\ref{fig:convergence}.
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width = 0.5\textwidth]{Pictures/convergence.png}
-    \caption{Convergence of the $L^2$ error ($h$-refinement) for the reference solution.}
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width = 0.5\textwidth]{Pictures/convergence.png}
+    \end{center}
+    \caption[Convergence of the $L^2$ error ($h$-refinement) for the reference solution.]{Convergence of the $L^2$ error ($h$-refinement) for the reference solution.}
     \label{fig:convergence}
 \end{figure}
 
 Next, the implementation of the FE$^2$ method was verified by comparing the normalized $L^2$-norm error between the solution vector (at all nodes) on $\Omega_\text{str}$ without multiscale coupling, and the solution vector (at all nodes) obtained by using the FE$^2$ method in the subdomain $\Omega_\text{mac} = [1, 2]^2$. Fig.~\ref{fig:validation} shows the first sample of the material random field $\lambda$ (for $\underline{\lambda} = 40\,000$, $\delta_{\lambda} = 0.2$, and $L_c = 0.3$), as well as solutions to the structural and macroscale problems. 
-\begin{figure}[!ht]
-    \begin{subfigure}[b]{0.33\textwidth}
-        \includegraphics[trim = {12cm 0cm 0cm 0cm}, clip, width=\textwidth]{Pictures/lambda_11.png}
-        \caption{$\{\lambda(\bfx, \theta), \bfx \in \Omega_{\text{str}}\}$}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.33\textwidth}
-        \includegraphics[trim = {12cm 0cm 0cm 0cm}, clip, width=\textwidth]{Pictures/omega_str_11.png}
-        \caption{$\bfx \mapsto \lVert \bfu_\text{str}(\bfx)\rVert$}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.33\textwidth}
-        \includegraphics[trim = {12cm 0cm 0cm 0cm}, clip, width=\textwidth]{Pictures/omega_mac_11.png}
-        \caption{$\bfx \mapsto \lVert \bfu_\text{FE$^2$}(\bfx)\rVert$}
-    \end{subfigure}
-    \caption{Sample of the material parameter $\lambda$ (left) and associated displacement magnitudes for the solutions on $\Omega_\text{str}$ (middle) and $\Omega_\text{mac}$ (right).}
+\begin{figure}[!htb]
+    \begin{center}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[trim = {12cm 0cm 0cm 0cm}, clip, width=\textwidth]{Pictures/lambda_11.png}
+            \end{center}
+            \caption{$\{\lambda(\bfx, \theta), \bfx \in \Omega_{\text{str}}\}$}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[trim = {12cm 0cm 0cm 0cm}, clip, width=\textwidth]{Pictures/omega_str_11.png}
+            \end{center}
+            \caption{$\bfx \mapsto \lVert \bfu_\text{str}(\bfx)\rVert$}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[trim = {12cm 0cm 0cm 0cm}, clip, width=\textwidth]{Pictures/omega_mac_11.png}
+            \end{center}
+            \caption{$\bfx \mapsto \lVert \bfu_\text{FE$^2$}(\bfx)\rVert$}
+        \end{subfigure}
+    \end{center}
+    \caption[Sample of the material parameter and associated displacement magnitudes for the solutions on macroscopic and mesoscopic scale.]{Sample of the material parameter $\lambda$ (left) and associated displacement magnitudes for the solutions on $\Omega_\text{str}$ (middle) and $\Omega_\text{mac}$ (right).}
     \label{fig:validation}
 \end{figure}
 In order to perform a statistical analysis on the error, 500 independent samples of $\lambda$ were generated. The mean of the normalized $L^2$ error is $4.69\mathrm{e}{-4}$, and the coefficient of variation is 0.22. The probability density function of the normalized $L^2$ norm error is shown in Fig.~\ref{fig:normalized_l2_norm_distribution}.
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Pictures/l2_norm_scenario_2.pdf}
-    \caption{Probability density function of the normalized $L^2$-norm error (estimated with 500 samples).}
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{Pictures/l2_norm_scenario_2.pdf}
+    \end{center}
+    \caption[Probability density function of the normalized $L^2$-norm error.]{Probability density function of the normalized $L^2$-norm error (estimated with 500 samples).}
     \label{fig:normalized_l2_norm_distribution}
 \end{figure}
 These results indicate proper implementation of the concurrent multiscale method, which is used to build the dataset for the probabilistic learning technique (introduced in the next section).
@@ -476,24 +488,23 @@ Regarding  the computation of the diffusion-maps basis introduced in Section~\re
 %
 %
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.40\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM1a.pdf}
-        \caption{Graph of function $\nu\mapsto \errpp_\bfX(\nu)$}
-        \label{fig:figurePLoM1a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.40\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM1b.pdf}
-        \caption{Graph of the eigenvalues $\alpha\mapsto \lambda_\alpha$}
-        \label{fig:figurePLoM1b}
-    \end{subfigure}
-        %
-    \caption{Convergence of the PCA reduced representation (a). Eigenvalues of the transition matrix $[\PP]$ for the diffusion-maps basis (b). Scenario~1 (thin line), Scenario~2 (thick line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.40\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{Pictures/figurePLoM1a.pdf}
+            \end{center}
+                \caption{Graph of function $\nu\mapsto \errpp_\bfX(\nu)$}
+                \label{fig:figurePLoM1a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.40\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM1b.pdf}
+                \end{center}
+                \caption{Graph of the eigenvalues $\alpha\mapsto \lambda_\alpha$}
+                \label{fig:figurePLoM1b}
+            \end{subfigure}
+    \end{center}
+    \caption[Convergence of the PCA reduced representation. Eigenvalues of the transition matrix for the diffusion-maps basis.]{Convergence of the PCA reduced representation (a). Eigenvalues of the transition matrix $[\PP]$ for the diffusion-maps basis (b). Scenario~1 (thin line), Scenario~2 (thick line).}
     \label{fig:figurePLoM1}
 \end{figure}
 
@@ -511,24 +522,23 @@ The convergence of the iterative algorithm presented in Section~\ref{sec:PLoM.7}
 For  both  scenarios and for all $k$ in $\{1,\ldots , \nu\}$,  at convergence, it holds that  $\vert E\{ H_{c,k}\}\vert \leq 10^{-7}$ and $0.999 \leq E\{ H_{c,k}^2\} \leq 1$.\\
 %
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.40\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM2a.pdf}
-        \caption{Graph of function $i\mapsto\errp(i)$}
-        \label{fig:figurePLoM2a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.40\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM2b.pdf}
-        \caption{Graph of function $i\mapsto \Vert\bflambda^i\Vert$}
-        \label{fig:figurePLoM2b}
-    \end{subfigure}
-        %
-    \caption{Convergence analysis of the iterative algorithm to take into account the constraints on second-order moments of $\bfH$ in PLoM as a function of iteration number $i$, presented in log-log scales. Scenario~1 (thin line), Scenario~2 (thick line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.40\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{Pictures/figurePLoM2a.pdf}
+            \end{center}
+                \caption{Graph of function $i\mapsto\errp(i)$}
+                \label{fig:figurePLoM2a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.40\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM2b.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto \Vert\bflambda^i\Vert$}
+                \label{fig:figurePLoM2b}
+            \end{subfigure}
+    \end{center}
+    \caption[Convergence analysis of the iterative algorithm.]{Convergence analysis of the iterative algorithm to take into account the constraints on second-order moments of $\bfH$ in PLoM as a function of iteration number $i$, presented in log-log scales. Scenario~1 (thin line), Scenario~2 (thick line).}
     \label{fig:figurePLoM2}
 \end{figure}
 
@@ -541,84 +551,79 @@ depict the  probability density functions of components $H_1$, $H_{30}$, and $H_
 Fig.~\ref{fig:figurePLoM5a} (Scenario~1) and Fig.~\ref{fig:figurePLoM5b} (Scenario~2) display the clouds of the learned points and the training points of $\bfH$, associated with components $H_1$, $H_{30}$, and $H_{70}$. These results illustrate the preservation of the concentration of the probability measure.
 %
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM3a.pdf}
-        \caption{PDF $\eta_1\mapsto p_{H_1}(\eta_1)$}
-        \label{fig:figurePLoM3a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM3b.pdf}
-        \caption{PDF $\eta_{30}\mapsto p_{H_{30}}(\eta_{30})$}
-        \label{fig:figurePLoM3b}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM3c.pdf}
-        \caption{PDF $\eta_{70}\mapsto p_{H_{70}}(\eta_{70})$}
-        \label{fig:figurePLoM3c}
-    \end{subfigure}
-    %
-    \caption{Scenario 1: probability density functions of components $H_1$, $H_{30}$, and $H_{70}$ of $\bfH$, estimated with the training dataset (dashed line) and with the learned dataset (solid line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{Pictures/figurePLoM3a.pdf}
+            \end{center}
+                \caption{PDF $\eta_1\mapsto p_{H_1}(\eta_1)$}
+                \label{fig:figurePLoM3a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM3b.pdf}
+                \end{center}
+                \caption{PDF $\eta_{30}\mapsto p_{H_{30}}(\eta_{30})$}
+                \label{fig:figurePLoM3b}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM3c.pdf}
+                \end{center}    
+                \caption{PDF $\eta_{70}\mapsto p_{H_{70}}(\eta_{70})$}
+                \label{fig:figurePLoM3c}
+            \end{subfigure}
+    \end{center}
+    \caption[Scenario 1: probability density functions of components $H_1$, $H_{30}$, and $H_{70}$ of $\bfH$.]{Scenario 1: probability density functions of components $H_1$, $H_{30}$, and $H_{70}$ of $\bfH$, estimated with the training dataset (dashed line) and with the learned dataset (solid line).}
     \label{fig:figurePLoM3}
 \end{figure}
 %
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM4a.pdf}
-        \caption{PDF $\eta_1\mapsto p_{H_1}(\eta_1)$}
-        \label{fig:figurePLoM4a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM4b.pdf}
-        \caption{PDF $\eta_{30}\mapsto p_{H_{30}}(\eta_{30})$}
-        \label{fig:figurePLoM4b}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM4c.pdf}
-        \caption{PDF $\eta_{70}\mapsto p_{H_{70}}(\eta_{70})$}
-        \label{fig:figurePLoM4c}
-    \end{subfigure}
-    %
-    \caption{Scenario 2: probability density functions of components $H_1$, $H_{30}$, and $H_{70}$ of $\bfH$, estimated with the training dataset (dashed line) and with the learned dataset (solid line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{Pictures/figurePLoM4a.pdf}
+            \end{center}
+                \caption{PDF $\eta_1\mapsto p_{H_1}(\eta_1)$}
+                \label{fig:figurePLoM4a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM4b.pdf}
+                \end{center}
+                \caption{PDF $\eta_{30}\mapsto p_{H_{30}}(\eta_{30})$}
+                \label{fig:figurePLoM4b}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM4c.pdf}
+                \end{center}    
+                \caption{PDF $\eta_{70}\mapsto p_{H_{70}}(\eta_{70})$}
+                \label{fig:figurePLoM4c}
+            \end{subfigure}
+    \end{center}
+    \caption[Scenario 2: probability density functions of components $H_1$, $H_{30}$, and $H_{70}$ of $\bfH$.]{Scenario 2: probability density functions of components $H_1$, $H_{30}$, and $H_{70}$ of $\bfH$, estimated with the training dataset (dashed line) and with the learned dataset (solid line).}
     \label{fig:figurePLoM4}
 \end{figure}
 %
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-        \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM5a.pdf}
-        \caption{Scenario 1: cloud of points for training (blue star) and learning (red hexagram)}
-        \label{fig:figurePLoM5a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-        \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM5b.pdf}
-        \caption{Scenario 2: cloud of points for training (blue star) and learning (red hexagram)}
-        \label{fig:figurePLoM5b}
-    \end{subfigure}
-        %
-    \caption{Clouds of the learned points and the training points of $\bfH$, associated with components $H_1$, $H_{30}$, and $H_{70}$.}
+    \begin{center}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \begin{center}
+                \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM5a.pdf}
+            \end{center}
+                \caption{Scenario 1: cloud of points for training (blue star) and learning (red hexagram)}
+                \label{fig:figurePLoM5a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.45\textwidth}
+                \begin{center}
+                    \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM5b.pdf}
+                \end{center}
+                \caption{Scenario 2: cloud of points for training (blue star) and learning (red hexagram)}
+                \label{fig:figurePLoM5b}
+            \end{subfigure}
+    \end{center}
+    \caption[Clouds of the learned points and the training points.]{Clouds of the learned points and the training points of $\bfH$, associated with components $H_1$, $H_{30}$, and $H_{70}$.}
     \label{fig:figurePLoM5}
 \end{figure}
 %
@@ -645,24 +650,23 @@ Concerning the conditional probability density functions, we select the first co
 Fig.~\ref{fig:figurePLoM6} displays the graphs of the conditional probability density functions $q\mapsto p_{ C_{60,1} \vert \bfW_\hypp } (q \vert \bfw_o)$ of random variable $C_{60,1}$ and $q\mapsto p_{ S_{60,1} \vert \bfW_\hypp} (q \vert \bfw_o)$ of random variable $S_{60,1}$ given $\bfW_\hypp =\bfw_0$, estimated with the learned dataset and the validation dataset. It can be seen that the width of the supports, which control the variances, is well predicted. 
 %--- Figure PLoM6---------------------------
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-        \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM6a.pdf}
-        \caption{Graph of function $q\mapsto p_{ C_{60,1} \vert \bfW_\hyppp } (q \vert \bfw_o)$}
-        \label{fig:figurePLoM6a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-        \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM6b.pdf}
-        \caption{Graph of function $q\mapsto p_{ S_{60,1} \vert \bfW_\hyppp } (q \vert \bfw_o)$}
-        \label{fig:figurePLoM6b}
-    \end{subfigure}
-        %
-    \caption{Validation of Scenario 1: Graph of the conditional pdf given $\bfW_\hypp =\bfw_0$ of component $1$ of the random tensors $\bfC$ and $\bfS$ at point $60$. Learned dataset (solid line), validation dataset (dashed line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \begin{center}
+                \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM6a.pdf}
+            \end{center}
+                \caption{Graph of function $q\mapsto p_{ C_{60,1} \vert \bfW_\hyppp } (q \vert \bfw_o)$}
+                \label{fig:figurePLoM6a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.45\textwidth}
+                \begin{center}
+                    \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM6b.pdf}
+                \end{center}
+                \caption{Graph of function $q\mapsto p_{ S_{60,1} \vert \bfW_\hyppp } (q \vert \bfw_o)$}
+                \label{fig:figurePLoM6b}
+            \end{subfigure}
+    \end{center}
+    \caption[Validation of Scenario 1: Graph of the conditional pdf.]{Validation of Scenario 1: Graph of the conditional pdf given $\bfW_\hypp =\bfw_0$ of component $1$ of the random tensors $\bfC$ and $\bfS$ at point $60$. Learned dataset (solid line), validation dataset (dashed line).}
     \label{fig:figurePLoM6}
 \end{figure}
 
@@ -670,63 +674,59 @@ For the three components indexed by $j\in\{1,2,3\}$, Fig.~\ref{fig:figurePLoM7} 
 $i\mapsto E\{ C_{i,j} \vert \bfW_\hypp = \bfw_o \}$  for the family  $\{C_{i,j},i\in\curI\}$ of random variables, while Fig.~\ref{fig:figurePLoM8} displays the graphs of $i\mapsto E\{ S_{i,j} \vert \bfW_\hypp = \bfw_o \}$  for the family  $\{S_{i,j},i\in\curI\}$. While very large variations are observed over the quadrature points, the accuracy in the predictions of the conditional expectations remains remarkably good given the small number of training data. It should be noted that the graphs in Pictures.~\ref{fig:figurePLoM7b} and \ref{fig:figurePLoM8b} differ only from a constant.\\
 %--- Figure PLoM7---------------------------
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM7a.pdf}
-        \caption{Graph of function $i\mapsto E\{ C_{i,1} \vert \bfW_\hyppp = \bfw_o \}$}
-        \label{fig:figurePLoM7a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM7b.pdf}
-        \caption{Graph of function $i\mapsto E\{ C_{i,2} \vert \bfW_\hyppp = \bfw_o \}$}
-        \label{fig:figurePLoM7b}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM7c.pdf}
-        \caption{Graph of function $i\mapsto E\{ C_{i,3} \vert \bfW_\hyppp = \bfw_o \}$}
-        \label{fig:figurePLoM7c}
-    \end{subfigure}
-    %
-    \caption{Validation of Scenario 1: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\hypp =\bfw_0$ for the three components of the random tensor $\bfC$.  Learned dataset (solid line), validation dataset (dashed line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{Pictures/figurePLoM7a.pdf}
+            \end{center}
+                \caption{Graph of function $i\mapsto E\{ C_{i,1} \vert \bfW_\hyppp = \bfw_o \}$}
+                \label{fig:figurePLoM7a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM7b.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ C_{i,2} \vert \bfW_\hyppp = \bfw_o \}$}
+                \label{fig:figurePLoM7b}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM7c.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ C_{i,3} \vert \bfW_\hyppp = \bfw_o \}$}
+                \label{fig:figurePLoM7c}
+            \end{subfigure}
+    \end{center}
+    \caption[Validation of Scenario 1: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\hypp =\bfw_0$.]{Validation of Scenario 1: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\hypp =\bfw_0$ for the three components of the random tensor $\bfC$.  Learned dataset (solid line), validation dataset (dashed line).}
     \label{fig:figurePLoM7}
 \end{figure}
 %
 %--- Figure PLoM8---------------------------
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM8a.pdf}
-        \caption{Graph of function $i\mapsto E\{ S_{i,1} \vert \bfW_\hyppp = \bfw_o \}$}
-        \label{fig:figurePLoM8a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM8b.pdf}
-        \caption{Graph of function $i\mapsto E\{ S_{i,2} \vert \bfW_\hyppp = \bfw_o \}$}
-        \label{fig:figurePLoM8b}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM8c.pdf}
-        \caption{Graph of function $i\mapsto E\{ S_{i,3} \vert \bfW_\hyppp = \bfw_o \}$}
-        \label{fig:figurePLoM8c}
-    \end{subfigure}
-    %
-    \caption{Validation of Scenario 1: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\hypp =\bfw_0$ for the three components of the random tensor $\bfS$.  Learned dataset (solid line), validation dataset (dashed line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{Pictures/figurePLoM8a.pdf}
+            \end{center}
+                \caption{Graph of function $i\mapsto E\{ S_{i,1} \vert \bfW_\hyppp = \bfw_o \}$}
+                \label{fig:figurePLoM8a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM8b.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ S_{i,2} \vert \bfW_\hyppp = \bfw_o \}$}
+                \label{fig:figurePLoM8b}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM8c.pdf}
+                \end{center}    
+                \caption{Graph of function $i\mapsto E\{ S_{i,3} \vert \bfW_\hyppp = \bfw_o \}$}
+                \label{fig:figurePLoM8c}
+            \end{subfigure}
+    \end{center}
+    \caption[Validation of Scenario 1: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\hypp =\bfw_0$.]{Validation of Scenario 1: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\hypp =\bfw_0$ for the three components of the random tensor $\bfS$.  Learned dataset (solid line), validation dataset (dashed line).}
     \label{fig:figurePLoM8}
 \end{figure}
 %
@@ -738,47 +738,45 @@ The conditional probability density functions are estimated for the first compon
 For the two values of the control parameter, $k=1$ and $k=2$, Fig.~\ref{fig:figurePLoM9} displays the graphs of the conditional probability density functions $q\mapsto p_{ C_{60,1} \vert \bfW_\dispp } (q \vert \bfw_{o,k})$ for random variable $C_{60,1}$ given $\bfW_\dispp =\bfw_{0,k}$, estimated with the learned dataset and the validation dataset. Similarly, Fig.~\ref{fig:figurePLoM10} displays the graphs of $q\mapsto p_{ S_{60,1} \vert \bfW_\dispp } (q \vert \bfw_{o,k})$ for random variable $S_{60,1}$ given $\bfW_\dispp =\bfw_{0,k}$.
 %--- Figure PLoM9---------------------------
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-        \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM9a.pdf}
-        \caption{Graph of function $q\mapsto p_{ C_{60,1} \vert \bfW_\disppp } (q \vert \bfw_{o,1})$}
-        \label{fig:figurePLoM9a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-        \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM9b.pdf}
-        \caption{Graph of function $q\mapsto p_{ C_{60,1} \vert \bfW_\disppp } (q \vert \bfw_{o,2})$}
-        \label{fig:figurePLoM9b}
-    \end{subfigure}
-        %
-    \caption{Validation of Scenario 2: Graph of the conditional pdf given $\bfW_\dispp =\bfw_{0,1}$ or $\bfw_{0,2}$ of component $1$ of the random tensor $\bfC$ at point $60$. Learned dataset (solid line), validation dataset (dashed line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \begin{center}
+                \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM9a.pdf}
+            \end{center}
+                \caption{Graph of function $q\mapsto p_{ C_{60,1} \vert \bfW_\disppp } (q \vert \bfw_{o,1})$}
+                \label{fig:figurePLoM9a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.45\textwidth}
+                \begin{center}
+                    \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM9b.pdf}
+                \end{center}
+                \caption{Graph of function $q\mapsto p_{ C_{60,1} \vert \bfW_\disppp } (q \vert \bfw_{o,2})$}
+                \label{fig:figurePLoM9b}
+            \end{subfigure}
+    \end{center}
+    \caption[Validation of Scenario 2: Graph of the conditional pdf.]{Validation of Scenario 2: Graph of the conditional pdf given $\bfW_\dispp =\bfw_{0,1}$ or $\bfw_{0,2}$ of component $1$ of the random tensor $\bfC$ at point $60$. Learned dataset (solid line), validation dataset (dashed line).}
     \label{fig:figurePLoM9}
 \end{figure}
 %
 %--- Figure PLoM10---------------------------
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-        \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM10a.pdf}
-        \caption{Graph of function $q\mapsto p_{ S_{60,1} \vert \bfW_\disppp } (q \vert \bfw_{o,1})$}
-        \label{fig:figurePLoM10a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-        \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM10b.pdf}
-        \caption{Graph of function $q\mapsto p_{ S_{60,1} \vert \bfW_\disppp } (q \vert \bfw_{o,2})$}
-        \label{fig:figurePLoM10b}
-    \end{subfigure}
-        %
-    \caption{Validation of Scenario 2: Graph of the conditional pdf given $\bfW_\dispp =\bfw_{0,1}$ or $\bfw_{0,2}$ of component $1$ of the random tensor $\bfS$ at point $60$. Learned dataset (solid line), validation dataset (dashed line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \begin{center}
+                \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM10a.pdf}
+            \end{center}
+                \caption{Graph of function $q\mapsto p_{ S_{60,1} \vert \bfW_\disppp } (q \vert \bfw_{o,1})$}
+                \label{fig:figurePLoM10a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.45\textwidth}
+                \begin{center}
+                    \includegraphics[width=0.75\textwidth]{Pictures/figurePLoM10b.pdf}
+                \end{center}
+                \caption{Graph of function $q\mapsto p_{ S_{60,1} \vert \bfW_\disppp } (q \vert \bfw_{o,2})$}
+                \label{fig:figurePLoM10b}
+            \end{subfigure}
+    \end{center}
+    \caption[Validation of Scenario 2: Graph of the conditional pdf.]{Validation of Scenario 2: Graph of the conditional pdf given $\bfW_\dispp =\bfw_{0,1}$ or $\bfw_{0,2}$ of component $1$ of the random tensor $\bfS$ at point $60$. Learned dataset (solid line), validation dataset (dashed line).}
     \label{fig:figurePLoM10}
 \end{figure}
 Again, it is seen that the supports of the (marginal) distributions are well predicted, and the validation results are reasonably good.
@@ -789,124 +787,121 @@ $i\mapsto E\{ C_{i,j} \vert \bfW_\dispp = \bfw_{o,k} \}$  for the family  $\{C_{
 
 %--- Figure PLoM11---------------------------
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM11a.pdf}
-        \caption{Graph of function $i\mapsto E\{ C_{i,1} \vert \bfW_\disppp = \bfw_{o,1} \}$}
-        \label{fig:figurePLoM11a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM11b.pdf}
-        \caption{Graph of function $i\mapsto E\{ C_{i,2} \vert \bfW_\disppp = \bfw_{o,1} \}$}
-        \label{fig:figurePLoM11b}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM11c.pdf}
-        \caption{Graph of function $i\mapsto E\{ C_{i,3} \vert \bfW_\disppp = \bfw_{o,1} \}$}
-        \label{fig:figurePLoM11c}
-    \end{subfigure}
-    %
-    \caption{Validation of Scenario 2: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\dispp =\bfw_{0,1}$ for the three components of the random tensor $\bfC$.  Learned dataset (solid line), validation dataset (dashed line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM11a.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ C_{i,1} \vert \bfW_\disppp = \bfw_{o,1} \}$}
+                \label{fig:figurePLoM11a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM11b.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ C_{i,2} \vert \bfW_\disppp = \bfw_{o,1} \}$}
+                \label{fig:figurePLoM11b}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM11c.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ C_{i,3} \vert \bfW_\disppp = \bfw_{o,1} \}$}
+                \label{fig:figurePLoM11c}
+            \end{subfigure}
+    \end{center}
+    \caption[Validation of Scenario 2: Graph of the conditional mathematical expectation.]{Validation of Scenario 2: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\dispp =\bfw_{0,1}$ for the three components of the random tensor $\bfC$.  Learned dataset (solid line), validation dataset (dashed line).}
     \label{fig:figurePLoM11}
 \end{figure}
 %
 %--- Figure PLoM12---------------------------
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM12a.pdf}
-        \caption{Graph of function $i\mapsto E\{ C_{i,1} \vert \bfW_\disppp = \bfw_{o,2} \}$}
-        \label{fig:figurePLoM12a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM12b.pdf}
-        \caption{Graph of function $i\mapsto E\{ C_{i,2} \vert \bfW_\disppp = \bfw_{o,2} \}$}
-        \label{fig:figurePLoM12b}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM12c.pdf}
-        \caption{Graph of function $i\mapsto E\{ C_{i,3} \vert \bfW_\disppp = \bfw_{o,2} \}$}
-        \label{fig:figurePLoM12c}
-    \end{subfigure}
-    %
-    \caption{Validation of Scenario 2: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\dispp =\bfw_{0,2}$ for the three components of the random tensor $\bfC$.  Learned dataset (solid line), validation dataset (dashed line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{Pictures/figurePLoM12a.pdf}
+            \end{center}
+                \caption{Graph of function $i\mapsto E\{ C_{i,1} \vert \bfW_\disppp = \bfw_{o,2} \}$}
+                \label{fig:figurePLoM12a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+            \centering
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM12b.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ C_{i,2} \vert \bfW_\disppp = \bfw_{o,2} \}$}
+                \label{fig:figurePLoM12b}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM12c.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ C_{i,3} \vert \bfW_\disppp = \bfw_{o,2} \}$}
+                \label{fig:figurePLoM12c}
+            \end{subfigure}
+    \end{center}
+    \caption[Validation of Scenario 2: Graph of the conditional mathematical expectation.]{Validation of Scenario 2: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\dispp =\bfw_{0,2}$ for the three components of the random tensor $\bfC$.  Learned dataset (solid line), validation dataset (dashed line).}
     \label{fig:figurePLoM12}
 \end{figure}
 %
 %--- Figure PLoM13---------------------------
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM13a.pdf}
-        \caption{Graph of function $i\mapsto E\{ S_{i,1} \vert \bfW_\disppp = \bfw_{o,1} \}$}
-        \label{fig:figurePLoM13a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM13b.pdf}
-        \caption{Graph of function $i\mapsto E\{ S_{i,2} \vert \bfW_\disppp = \bfw_{o,1} \}$}
-        \label{fig:figurePLoM13b}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM13c.pdf}
-        \caption{Graph of function $i\mapsto E\{ S_{i,3} \vert \bfW_\disppp = \bfw_{o,1} \}$}
-        \label{fig:figurePLoM13c}
-    \end{subfigure}
-    %
-    \caption{Validation of Scenario 2: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\dispp =\bfw_{0,1}$ for the three components of the random tensor $\bfS$.  Learned dataset (solid line), validation dataset (dashed line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{Pictures/figurePLoM13a.pdf}
+            \end{center}
+                \caption{Graph of function $i\mapsto E\{ S_{i,1} \vert \bfW_\disppp = \bfw_{o,1} \}$}
+                \label{fig:figurePLoM13a}
+            \end{subfigure}
+            %
+            \centering
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM13b.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ S_{i,2} \vert \bfW_\disppp = \bfw_{o,1} \}$}
+                \label{fig:figurePLoM13b}
+            \end{subfigure}
+            %
+            \centering
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM13c.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ S_{i,3} \vert \bfW_\disppp = \bfw_{o,1} \}$}
+                \label{fig:figurePLoM13c}
+            \end{subfigure}
+    \end{center}
+    \caption[Validation of Scenario 2: Graph of the conditional mathematical expectation.]{Validation of Scenario 2: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\dispp =\bfw_{0,1}$ for the three components of the random tensor $\bfS$.  Learned dataset (solid line), validation dataset (dashed line).}
     \label{fig:figurePLoM13}
 \end{figure}
 %
 %--- Figure PLoM14---------------------------
 \begin{figure}[!htb]
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM14a.pdf}
-        \caption{Graph of function $i\mapsto E\{ S_{i,1} \vert \bfW_\disppp = \bfw_{o,2} \}$}
-        \label{fig:figurePLoM14a}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM14b.pdf}
-        \caption{Graph of function $i\mapsto E\{ S_{i,2} \vert \bfW_\disppp = \bfw_{o,2} \}$}
-        \label{fig:figurePLoM14b}
-    \end{subfigure}
-    %
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-    \centering
-        \includegraphics[width=\textwidth]{Pictures/figurePLoM14c.pdf}
-        \caption{Graph of function $i\mapsto E\{ S_{i,3} \vert \bfW_\disppp = \bfw_{o,2} \}$}
-        \label{fig:figurePLoM14c}
-    \end{subfigure}
-    %
-    \caption{Validation of Scenario 2: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\dispp =\bfw_{0,2}$ for the three components of the random tensor $\bfS$.  Learned dataset (solid line), validation dataset (dashed line).}
+    \begin{center}
+        \begin{subfigure}[b]{0.32\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{Pictures/figurePLoM14a.pdf}
+            \end{center}
+                \caption{Graph of function $i\mapsto E\{ S_{i,1} \vert \bfW_\disppp = \bfw_{o,2} \}$}
+                \label{fig:figurePLoM14a}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM14b.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ S_{i,2} \vert \bfW_\disppp = \bfw_{o,2} \}$}
+                \label{fig:figurePLoM14b}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.32\textwidth}
+                \begin{center}
+                    \includegraphics[width=\textwidth]{Pictures/figurePLoM14c.pdf}
+                \end{center}
+                \caption{Graph of function $i\mapsto E\{ S_{i,3} \vert \bfW_\disppp = \bfw_{o,2} \}$}
+                \label{fig:figurePLoM14c}
+            \end{subfigure}
+    \end{center}
+    \caption[Validation of Scenario 2: Graph of the conditional mathematical expectation.]{Validation of Scenario 2: Graph of the conditional mathematical expectation as function of points $i$ given $\bfW_\dispp =\bfw_{0,2}$ for the three components of the random tensor $\bfS$.  Learned dataset (solid line), validation dataset (dashed line).}
     \label{fig:figurePLoM14}
 \end{figure}
